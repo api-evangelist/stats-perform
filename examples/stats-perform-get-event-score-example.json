@@ -1,0 +1,32 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "https://api.stats.com/v1/stats/football/nfl/scores/1234567?api_key=your_api_key"
+  },
+  "response": {
+    "status": 200,
+    "body": {
+      "eventId": "1234567",
+      "startDateTime": "2026-01-11T18:30:00Z",
+      "status": "final",
+      "homeTeam": {
+        "teamId": "KC",
+        "name": "Kansas City Chiefs",
+        "abbreviation": "KC"
+      },
+      "awayTeam": {
+        "teamId": "PHI",
+        "name": "Philadelphia Eagles",
+        "abbreviation": "PHI"
+      },
+      "homeScore": 34,
+      "awayScore": 28,
+      "periods": [
+        { "periodNumber": 1, "homeScore": 10, "awayScore": 7 },
+        { "periodNumber": 2, "homeScore": 7, "awayScore": 14 },
+        { "periodNumber": 3, "homeScore": 10, "awayScore": 7 },
+        { "periodNumber": 4, "homeScore": 7, "awayScore": 0 }
+      ]
+    }
+  }
+}

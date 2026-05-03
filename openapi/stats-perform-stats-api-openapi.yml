@@ -1,0 +1,740 @@
+openapi: 3.1.0
+info:
+  title: Stats Perform STATS API
+  description: >-
+    The STATS API from Stats Perform provides a comprehensive REST interface
+    for accessing sports data across American Football (NFL, NCAAF), Baseball
+    (MLB, MiLB), Basketball (NBA, NCAAB), Hockey (NHL), Soccer (MLS, EPL,
+    Champions League), Golf (PGA), and Tennis (ATP, WTA). The API provides
+    live scores, box scores, standings, schedules, player and team statistics,
+    play-by-play data, editorial content, photos, and historical records.
+    Authentication requires an API key and a secret for HMAC signing.
+  version: '1.0.0'
+  contact:
+    name: Stats Perform Support
+    email: help@support.statsperform.com
+    url: https://developer.stats.com/
+  termsOfService: https://www.statsperform.com/
+externalDocs:
+  description: STATS API Developer Portal
+  url: https://developer.stats.com/docs/get_started
+servers:
+  - url: https://api.stats.com/v1
+    description: Stats Perform STATS API
+tags:
+  - name: Events
+    description: >-
+      Access event (game/match) data including live scores, box scores,
+      play-by-play, and results across all supported sports.
+  - name: Teams
+    description: >-
+      Retrieve team rosters, statistics, and metadata for all supported
+      sports and leagues.
+  - name: Players
+    description: >-
+      Access player profiles, career statistics, and game-level performance
+      data.
+  - name: Standings
+    description: >-
+      Retrieve league and conference standings with win/loss records and
+      tiebreaker data.
+  - name: Schedules
+    description: >-
+      Access schedules of upcoming events and results of past events for
+      all leagues and dates.
+  - name: Statistics
+    description: >-
+      Access cumulative season statistics for teams and players across all
+      supported sports.
+  - name: Editorial
+    description: >-
+      Retrieve editorial content including news articles, previews, and
+      recaps associated with events, teams, and players.
+  - name: Reference Data
+    description: >-
+      Access reference data including league definitions, network types,
+      and decode tables for API response values.
+security:
+  - statsApiKey: []
+paths:
+  /stats/{sport}/{leaguePath}/scores/{eventId}:
+    get:
+      operationId: getEventScore
+      summary: Get Event Score
+      description: >-
+        Returns the current or final score for a specific event, including
+        period/quarter/inning-by-inning breakdown and game status.
+      tags:
+        - Events
+      parameters:
+        - $ref: '#/components/parameters/SportParam'
+        - $ref: '#/components/parameters/LeaguePathParam'
+        - $ref: '#/components/parameters/EventIdParam'
+        - $ref: '#/components/parameters/ApiKeyParam'
+      responses:
+        '200':
+          description: Event score data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EventScore'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /stats/{sport}/{leaguePath}/box/{eventId}:
+    get:
+      operationId: getEventBoxScore
+      summary: Get Event Box Score
+      description: >-
+        Returns the full box score for a specific event including all player
+        and team statistics for the game.
+      tags:
+        - Events
+      parameters:
+        - $ref: '#/components/parameters/SportParam'
+        - $ref: '#/components/parameters/LeaguePathParam'
+        - $ref: '#/components/parameters/EventIdParam'
+        - $ref: '#/components/parameters/ApiKeyParam'
+      responses:
+        '200':
+          description: Full box score with player statistics
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BoxScore'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /stats/{sport}/{leaguePath}/playbyplay/{eventId}:
+    get:
+      operationId: getEventPlayByPlay
+      summary: Get Event Play-by-Play
+      description: >-
+        Returns detailed play-by-play data for a specific event with all
+        game actions, times, and player involvement.
+      tags:
+        - Events
+      parameters:
+        - $ref: '#/components/parameters/SportParam'
+        - $ref: '#/components/parameters/LeaguePathParam'
+        - $ref: '#/components/parameters/EventIdParam'
+        - $ref: '#/components/parameters/ApiKeyParam'
+      responses:
+        '200':
+          description: Play-by-play event data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PlayByPlay'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /stats/{sport}/{leaguePath}/teams/:
+    get:
+      operationId: listTeams
+      summary: List Teams
+      description: >-
+        Returns a list of all teams in a league including team IDs, names,
+        abbreviations, and conference/division information.
+      tags:
+        - Teams
+      parameters:
+        - $ref: '#/components/parameters/SportParam'
+        - $ref: '#/components/parameters/LeaguePathParam'
+        - $ref: '#/components/parameters/ApiKeyParam'
+      responses:
+        '200':
+          description: List of teams
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  apiResults:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Team'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /stats/{sport}/{leaguePath}/teams/{teamId}:
+    get:
+      operationId: getTeam
+      summary: Get Team
+      description: >-
+        Returns detailed information about a specific team including roster,
+        season statistics, and team metadata.
+      tags:
+        - Teams
+      parameters:
+        - $ref: '#/components/parameters/SportParam'
+        - $ref: '#/components/parameters/LeaguePathParam'
+        - name: teamId
+          in: path
+          required: true
+          schema:
+            type: string
+          description: The unique team identifier.
+        - $ref: '#/components/parameters/ApiKeyParam'
+      responses:
+        '200':
+          description: Team details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Team'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /stats/{sport}/{leaguePath}/teams/{teamId}/stats:
+    get:
+      operationId: getTeamStats
+      summary: Get Team Statistics
+      description: >-
+        Returns cumulative season statistics for a specific team.
+      tags:
+        - Statistics
+      parameters:
+        - $ref: '#/components/parameters/SportParam'
+        - $ref: '#/components/parameters/LeaguePathParam'
+        - name: teamId
+          in: path
+          required: true
+          schema:
+            type: string
+          description: The unique team identifier.
+        - $ref: '#/components/parameters/ApiKeyParam'
+        - $ref: '#/components/parameters/SeasonParam'
+      responses:
+        '200':
+          description: Team season statistics
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TeamStats'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /stats/{sport}/{leaguePath}/players/{playerId}:
+    get:
+      operationId: getPlayer
+      summary: Get Player
+      description: >-
+        Returns detailed information about a specific player including
+        profile, career information, and current season statistics.
+      tags:
+        - Players
+      parameters:
+        - $ref: '#/components/parameters/SportParam'
+        - $ref: '#/components/parameters/LeaguePathParam'
+        - name: playerId
+          in: path
+          required: true
+          schema:
+            type: string
+          description: The unique player identifier.
+        - $ref: '#/components/parameters/ApiKeyParam'
+      responses:
+        '200':
+          description: Player profile and statistics
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Player'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /stats/{sport}/{leaguePath}/players/{playerId}/stats:
+    get:
+      operationId: getPlayerStats
+      summary: Get Player Statistics
+      description: >-
+        Returns cumulative season statistics for a specific player.
+      tags:
+        - Statistics
+      parameters:
+        - $ref: '#/components/parameters/SportParam'
+        - $ref: '#/components/parameters/LeaguePathParam'
+        - name: playerId
+          in: path
+          required: true
+          schema:
+            type: string
+          description: The unique player identifier.
+        - $ref: '#/components/parameters/ApiKeyParam'
+        - $ref: '#/components/parameters/SeasonParam'
+      responses:
+        '200':
+          description: Player season statistics
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PlayerStats'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /stats/{sport}/{leaguePath}/standings/:
+    get:
+      operationId: getStandings
+      summary: Get Standings
+      description: >-
+        Returns league and conference standings with win/loss records,
+        points, and tiebreaker information.
+      tags:
+        - Standings
+      parameters:
+        - $ref: '#/components/parameters/SportParam'
+        - $ref: '#/components/parameters/LeaguePathParam'
+        - $ref: '#/components/parameters/ApiKeyParam'
+        - $ref: '#/components/parameters/SeasonParam'
+      responses:
+        '200':
+          description: League standings
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Standings'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /stats/{sport}/{leaguePath}/scores/:
+    get:
+      operationId: listScores
+      summary: List Scores
+      description: >-
+        Returns scores for multiple events on a given date or for the
+        current day, supporting all configured leagues.
+      tags:
+        - Events
+      parameters:
+        - $ref: '#/components/parameters/SportParam'
+        - $ref: '#/components/parameters/LeaguePathParam'
+        - $ref: '#/components/parameters/ApiKeyParam'
+        - name: date
+          in: query
+          required: false
+          schema:
+            type: string
+            format: date
+          description: Date for which to retrieve scores (YYYYMMDD format).
+      responses:
+        '200':
+          description: List of event scores
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  apiResults:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/EventScore'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /editorial/{sport}/{leaguePath}/news/:
+    get:
+      operationId: listNews
+      summary: List News
+      description: >-
+        Returns editorial news articles, previews, and recaps for a
+        specific sport and league.
+      tags:
+        - Editorial
+      parameters:
+        - $ref: '#/components/parameters/SportParam'
+        - $ref: '#/components/parameters/LeaguePathParam'
+        - $ref: '#/components/parameters/ApiKeyParam'
+        - name: count
+          in: query
+          required: false
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 50
+          description: Number of articles to return.
+      responses:
+        '200':
+          description: List of news articles
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  apiResults:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Article'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /decode/networkTypes/:
+    get:
+      operationId: decodeNetworkTypes
+      summary: Decode Network Types
+      description: >-
+        Returns the reference decode table for network type identifiers
+        used in API responses. Path segments are case-sensitive.
+      tags:
+        - Reference Data
+      parameters:
+        - $ref: '#/components/parameters/ApiKeyParam'
+      responses:
+        '200':
+          description: Network type decode table
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  apiResults:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        networkTypeId:
+                          type: integer
+                        name:
+                          type: string
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+components:
+  securitySchemes:
+    statsApiKey:
+      type: apiKey
+      in: query
+      name: api_key
+      description: >-
+        API key assigned by Stats Perform. An API secret is also assigned
+        for HMAC request signing.
+  parameters:
+    ApiKeyParam:
+      name: api_key
+      in: query
+      required: true
+      schema:
+        type: string
+      description: Your Stats Perform API key.
+    SportParam:
+      name: sport
+      in: path
+      required: true
+      schema:
+        type: string
+        enum:
+          - football
+          - baseball
+          - basketball
+          - hockey
+          - soccer
+          - golf
+          - tennis
+      description: The sport category.
+    LeaguePathParam:
+      name: leaguePath
+      in: path
+      required: true
+      schema:
+        type: string
+      description: >-
+        The league path identifier (e.g., nfl, mlb, nba, nhl, epl, pga, atp).
+    EventIdParam:
+      name: eventId
+      in: path
+      required: true
+      schema:
+        type: string
+      description: The unique event identifier.
+    SeasonParam:
+      name: season
+      in: query
+      required: false
+      schema:
+        type: string
+      description: Season year (e.g., 2025). Defaults to current season.
+  schemas:
+    EventScore:
+      type: object
+      description: Score data for a sports event.
+      properties:
+        eventId:
+          type: string
+          description: Unique event identifier.
+        startDateTime:
+          type: string
+          format: date-time
+          description: Event start date and time.
+        status:
+          type: string
+          description: Current event status (pre-event, in-progress, final).
+        homeTeam:
+          $ref: '#/components/schemas/TeamRef'
+        awayTeam:
+          $ref: '#/components/schemas/TeamRef'
+        homeScore:
+          type: integer
+          description: Home team score.
+        awayScore:
+          type: integer
+          description: Away team score.
+        periods:
+          type: array
+          items:
+            type: object
+            properties:
+              periodNumber:
+                type: integer
+              homeScore:
+                type: integer
+              awayScore:
+                type: integer
+          description: Period/quarter/inning breakdown of the score.
+    BoxScore:
+      type: object
+      description: Full box score for a sports event.
+      properties:
+        eventId:
+          type: string
+          description: Unique event identifier.
+        homeTeam:
+          $ref: '#/components/schemas/TeamRef'
+        awayTeam:
+          $ref: '#/components/schemas/TeamRef'
+        homeStats:
+          type: object
+          additionalProperties: true
+          description: Home team aggregate statistics.
+        awayStats:
+          type: object
+          additionalProperties: true
+          description: Away team aggregate statistics.
+        playerStats:
+          type: array
+          items:
+            type: object
+            properties:
+              playerId:
+                type: string
+              playerName:
+                type: string
+              teamId:
+                type: string
+              stats:
+                type: object
+                additionalProperties: true
+          description: Individual player statistics for the event.
+    PlayByPlay:
+      type: object
+      description: Play-by-play data for a sports event.
+      properties:
+        eventId:
+          type: string
+          description: Unique event identifier.
+        plays:
+          type: array
+          items:
+            type: object
+            properties:
+              playId:
+                type: string
+              quarter:
+                type: integer
+              time:
+                type: string
+              description:
+                type: string
+              teamId:
+                type: string
+              playerId:
+                type: string
+          description: Ordered list of play events.
+    Team:
+      type: object
+      description: A sports team.
+      properties:
+        teamId:
+          type: string
+          description: Unique team identifier.
+        name:
+          type: string
+          description: Full team name.
+        abbreviation:
+          type: string
+          description: Team abbreviation.
+        city:
+          type: string
+          description: Team city.
+        conference:
+          type: string
+          description: Conference the team belongs to.
+        division:
+          type: string
+          description: Division the team belongs to.
+        logoUrl:
+          type: string
+          format: uri
+          description: URL to the team logo.
+    TeamRef:
+      type: object
+      description: Lightweight team reference.
+      properties:
+        teamId:
+          type: string
+          description: Team identifier.
+        name:
+          type: string
+          description: Team name.
+        abbreviation:
+          type: string
+          description: Team abbreviation.
+    TeamStats:
+      type: object
+      description: Cumulative season statistics for a team.
+      properties:
+        teamId:
+          type: string
+        season:
+          type: string
+        stats:
+          type: object
+          additionalProperties: true
+          description: Sport-specific statistical fields.
+    Player:
+      type: object
+      description: A sports player.
+      properties:
+        playerId:
+          type: string
+          description: Unique player identifier.
+        firstName:
+          type: string
+          description: Player first name.
+        lastName:
+          type: string
+          description: Player last name.
+        position:
+          type: string
+          description: Player position.
+        teamId:
+          type: string
+          description: Current team identifier.
+        jerseyNumber:
+          type: string
+          description: Jersey number.
+        birthDate:
+          type: string
+          format: date
+          description: Player birth date.
+        birthCity:
+          type: string
+          description: Player birth city.
+        birthCountry:
+          type: string
+          description: Player birth country.
+    PlayerStats:
+      type: object
+      description: Cumulative season statistics for a player.
+      properties:
+        playerId:
+          type: string
+        season:
+          type: string
+        stats:
+          type: object
+          additionalProperties: true
+          description: Sport-specific statistical fields.
+    Standings:
+      type: object
+      description: League standings.
+      properties:
+        league:
+          type: string
+          description: League identifier.
+        season:
+          type: string
+          description: Season year.
+        conferences:
+          type: array
+          items:
+            type: object
+            properties:
+              conferenceName:
+                type: string
+              divisions:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    divisionName:
+                      type: string
+                    teams:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          teamId:
+                            type: string
+                          name:
+                            type: string
+                          wins:
+                            type: integer
+                          losses:
+                            type: integer
+                          ties:
+                            type: integer
+                          points:
+                            type: integer
+                          winPct:
+                            type: number
+    Article:
+      type: object
+      description: An editorial article.
+      properties:
+        articleId:
+          type: string
+          description: Unique article identifier.
+        headline:
+          type: string
+          description: Article headline.
+        subHeadline:
+          type: string
+          description: Article sub-headline.
+        publishedAt:
+          type: string
+          format: date-time
+          description: Publication timestamp.
+        sport:
+          type: string
+          description: Associated sport.
+        league:
+          type: string
+          description: Associated league.
+        body:
+          type: string
+          description: Article body text.
+        imageUrl:
+          type: string
+          format: uri
+          description: Associated image URL.
+  responses:
+    Unauthorized:
+      description: Missing or invalid API key
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              message:
+                type: string

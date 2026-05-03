@@ -1,0 +1,268 @@
+naftiko: "1.0.0-alpha1"
+
+info:
+  label: "Stats Perform Sports Analytics"
+  description: >-
+    Unified sports analytics capability using the Stats Perform STATS API
+    for accessing live and historical sports data across all major American
+    sports leagues. Enables sports analysts, media platforms, and fantasy
+    sports applications to access scores, box scores, play-by-play,
+    standings, team and player statistics, and editorial content from
+    a single integration point.
+  tags:
+    - Sports Analytics
+    - Sports Data
+    - Football
+    - Baseball
+    - Basketball
+    - Hockey
+    - Soccer
+    - Live Scores
+    - Statistics
+    - Editorial
+  created: "2026-05-02"
+  modified: "2026-05-02"
+
+binds:
+  - namespace: env
+    keys:
+      STATS_PERFORM_API_KEY: STATS_PERFORM_API_KEY
+
+capability:
+  consumes:
+    - import: stats-perform
+      location: ./shared/stats-api.yaml
+
+  exposes:
+    - type: rest
+      port: 8080
+      namespace: stats-perform-analytics-api
+      description: "Unified REST API for multi-sport data analytics via Stats Perform."
+      resources:
+        - path: /v1/scores/{sport}/{league}
+          name: scores
+          description: "Live and historical event scores by sport and league."
+          operations:
+            - method: GET
+              name: list-scores
+              description: "List event scores for a sport and league on a given date."
+              call: "stats-perform.list-scores"
+              with:
+                sport: "rest.sport"
+                leaguePath: "rest.league"
+                date: "rest.date"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+        - path: /v1/scores/{sport}/{league}/{eventId}
+          name: event-score
+          description: "Score for a specific event."
+          operations:
+            - method: GET
+              name: get-event-score
+              description: "Get score for a specific event."
+              call: "stats-perform.get-event-score"
+              with:
+                sport: "rest.sport"
+                leaguePath: "rest.league"
+                eventId: "rest.eventId"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+        - path: /v1/box-scores/{sport}/{league}/{eventId}
+          name: box-score
+          description: "Full box score for an event."
+          operations:
+            - method: GET
+              name: get-box-score
+              description: "Get full box score with player statistics."
+              call: "stats-perform.get-event-box-score"
+              with:
+                sport: "rest.sport"
+                leaguePath: "rest.league"
+                eventId: "rest.eventId"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+        - path: /v1/play-by-play/{sport}/{league}/{eventId}
+          name: play-by-play
+          description: "Play-by-play data for an event."
+          operations:
+            - method: GET
+              name: get-play-by-play
+              description: "Get play-by-play data for an event."
+              call: "stats-perform.get-event-play-by-play"
+              with:
+                sport: "rest.sport"
+                leaguePath: "rest.league"
+                eventId: "rest.eventId"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+        - path: /v1/standings/{sport}/{league}
+          name: standings
+          description: "League standings."
+          operations:
+            - method: GET
+              name: get-standings
+              description: "Get standings for a sports league."
+              call: "stats-perform.get-standings"
+              with:
+                sport: "rest.sport"
+                leaguePath: "rest.league"
+                season: "rest.season"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+        - path: /v1/teams/{sport}/{league}
+          name: teams
+          description: "Teams in a league."
+          operations:
+            - method: GET
+              name: list-teams
+              description: "List teams in a sports league."
+              call: "stats-perform.list-teams"
+              with:
+                sport: "rest.sport"
+                leaguePath: "rest.league"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+        - path: /v1/news/{sport}/{league}
+          name: news
+          description: "Editorial news articles."
+          operations:
+            - method: GET
+              name: list-news
+              description: "List sports editorial news."
+              call: "stats-perform.list-news"
+              with:
+                sport: "rest.sport"
+                leaguePath: "rest.league"
+                count: "rest.count"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+    - type: mcp
+      port: 9090
+      namespace: stats-perform-analytics-mcp
+      transport: http
+      description: "MCP server for AI-assisted sports analytics using Stats Perform data."
+      tools:
+        - name: list-event-scores
+          description: "List event scores for a sport and league on a specific date."
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "stats-perform.list-scores"
+          with:
+            sport: "tools.sport"
+            leaguePath: "tools.league"
+            date: "tools.date"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: get-event-score
+          description: "Get the live or final score for a specific sports event."
+          hints:
+            readOnly: true
+            openWorld: false
+          call: "stats-perform.get-event-score"
+          with:
+            sport: "tools.sport"
+            leaguePath: "tools.league"
+            eventId: "tools.eventId"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: get-event-box-score
+          description: "Get the complete box score with all player statistics for a sports event."
+          hints:
+            readOnly: true
+            openWorld: false
+          call: "stats-perform.get-event-box-score"
+          with:
+            sport: "tools.sport"
+            leaguePath: "tools.league"
+            eventId: "tools.eventId"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: get-event-play-by-play
+          description: "Get detailed play-by-play sequence for a sports event."
+          hints:
+            readOnly: true
+            openWorld: false
+          call: "stats-perform.get-event-play-by-play"
+          with:
+            sport: "tools.sport"
+            leaguePath: "tools.league"
+            eventId: "tools.eventId"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: list-teams
+          description: "List all teams in a specified sports league."
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "stats-perform.list-teams"
+          with:
+            sport: "tools.sport"
+            leaguePath: "tools.league"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: get-team
+          description: "Get detailed team information including roster and statistics."
+          hints:
+            readOnly: true
+            openWorld: false
+          call: "stats-perform.get-team"
+          with:
+            sport: "tools.sport"
+            leaguePath: "tools.league"
+            teamId: "tools.teamId"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: get-standings
+          description: "Get the current standings for a sports league by conference and division."
+          hints:
+            readOnly: true
+            openWorld: false
+          call: "stats-perform.get-standings"
+          with:
+            sport: "tools.sport"
+            leaguePath: "tools.league"
+            season: "tools.season"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: list-sports-news
+          description: "Get editorial news articles, previews, and recaps for a sport and league."
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "stats-perform.list-news"
+          with:
+            sport: "tools.sport"
+            leaguePath: "tools.league"
+            count: "tools.count"
+          outputParameters:
+            - type: object
+              mapping: "$."

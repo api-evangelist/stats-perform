@@ -1,0 +1,157 @@
+name: Stats Perform Vocabulary
+description: >-
+  Domain vocabulary for the Stats Perform STATS API covering multi-sport
+  data concepts, event types, statistical measures, and editorial content.
+version: '1.0.0'
+created: '2026-05-02'
+modified: '2026-05-02'
+
+terms:
+  - term: Event
+    definition: >-
+      A single competitive sports occurrence such as a game, match, or race.
+      Identified by an eventId and includes teams, scores, and status.
+    synonyms:
+      - Game
+      - Match
+      - Contest
+    tags:
+      - Sports
+      - Core
+
+  - term: League Path
+    definition: >-
+      A URL path segment identifying a specific sports league in API requests
+      (e.g., "nfl", "mlb", "nba", "nhl", "epl"). Combined with the sport
+      parameter to form unique league-qualified endpoints.
+    tags:
+      - API
+      - Navigation
+
+  - term: Box Score
+    definition: >-
+      A structured summary of statistical performance for all players and
+      teams in a completed or in-progress event, including individual
+      statistics by position.
+    tags:
+      - Statistics
+      - Events
+
+  - term: Play-by-Play
+    definition: >-
+      A detailed sequential record of all significant actions in a sports
+      event, including time, player, team, and action description.
+    abbreviations:
+      - PBP
+    tags:
+      - Statistics
+      - Events
+      - Real-Time
+
+  - term: API Results
+    definition: >-
+      The standard wrapper array in Stats Perform list API responses.
+      All collection endpoints return data in an "apiResults" property.
+    tags:
+      - API
+      - Response Format
+
+  - term: Season
+    definition: >-
+      A calendar year representing the competitive period for a league.
+      Passed as a query parameter (e.g., "2025") to retrieve historical data.
+    tags:
+      - Sports
+      - Time
+
+  - term: Conference
+    definition: >-
+      A subdivision of a sports league, typically grouping teams by geography
+      (e.g., AFC/NFC in NFL, Eastern/Western in NBA).
+    tags:
+      - Teams
+      - Organization
+
+  - term: Division
+    definition: >-
+      A further subdivision within a conference, grouping teams by region
+      (e.g., AFC East, NFC West in NFL; Atlantic, Pacific in NBA).
+    tags:
+      - Teams
+      - Organization
+
+  - term: Standing
+    definition: >-
+      A team's rank within its league, conference, or division based on
+      win/loss record, points, or winning percentage.
+    tags:
+      - Statistics
+      - Teams
+
+  - term: Editorial Content
+    definition: >-
+      Human-authored sports journalism including game previews, recaps,
+      analysis articles, and news stories accessible via the editorial
+      endpoints.
+    tags:
+      - Content
+      - Media
+
+  - term: Decode Table
+    definition: >-
+      Reference data mapping integer IDs to human-readable values, accessible
+      via the /decode/ endpoints. Path segments in decode URLs are
+      case-sensitive.
+    tags:
+      - Reference Data
+      - API
+
+  - term: HMAC Signing
+    definition: >-
+      Hash-based Message Authentication Code signing required alongside the
+      API key for authenticated Stats Perform API requests.
+    tags:
+      - Authentication
+      - Security
+
+  - term: League
+    definition: >-
+      An organized sports competition. Stats Perform covers NFL, MLB, NBA,
+      NHL, MLS, EPL, PGA, ATP, WTA, and dozens of other leagues worldwide.
+    tags:
+      - Sports
+      - Organization
+
+  - term: Roster
+    definition: >-
+      The complete list of players registered to a team for a given season,
+      returned as part of team detail responses.
+    synonyms:
+      - Squad
+    tags:
+      - Players
+      - Teams
+
+categories:
+  - name: Core Concepts
+    terms:
+      - Event
+      - League
+      - Season
+      - Conference
+      - Division
+      - Standing
+      - Roster
+  - name: Statistical Data
+    terms:
+      - Box Score
+      - Play-by-Play
+  - name: API Conventions
+    terms:
+      - League Path
+      - API Results
+      - Decode Table
+      - HMAC Signing
+  - name: Content
+    terms:
+      - Editorial Content

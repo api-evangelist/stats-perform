@@ -1,0 +1,28 @@
+{
+  "name": "Event",
+  "description": "A Stats Perform sports event (game/match) with score and status.",
+  "fields": [
+    { "name": "eventId", "type": "string", "required": true, "description": "Unique event identifier." },
+    { "name": "startDateTime", "type": "date-time", "required": true, "description": "Event start time." },
+    { "name": "status", "type": "string", "required": true, "enum": ["pre-event", "in-progress", "final", "postponed", "cancelled"] },
+    { "name": "sport", "type": "string", "required": true, "description": "Sport category." },
+    { "name": "league", "type": "string", "required": true, "description": "League identifier." },
+    { "name": "homeTeam", "type": "TeamRef", "required": false, "description": "Home team reference." },
+    { "name": "awayTeam", "type": "TeamRef", "required": false, "description": "Away team reference." },
+    { "name": "homeScore", "type": "integer", "required": false, "description": "Home team score." },
+    { "name": "awayScore", "type": "integer", "required": false, "description": "Away team score." },
+    { "name": "periods", "type": "array", "required": false, "description": "Period-by-period score breakdown." },
+    { "name": "venue", "type": "string", "required": false, "description": "Venue name." },
+    { "name": "attendance", "type": "integer", "required": false, "description": "Game attendance." }
+  ],
+  "nested": [
+    {
+      "name": "TeamRef",
+      "fields": [
+        { "name": "teamId", "type": "string", "required": true },
+        { "name": "name", "type": "string", "required": true },
+        { "name": "abbreviation", "type": "string", "required": false }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,92 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/stats-perform/main/json-schema/stats-perform-event-schema.json",
+  "title": "Stats Perform Event",
+  "description": "Schema for a Stats Perform sports event (game/match) with score and status information.",
+  "type": "object",
+  "properties": {
+    "eventId": {
+      "type": "string",
+      "description": "Unique event identifier."
+    },
+    "startDateTime": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Event start date and time."
+    },
+    "status": {
+      "type": "string",
+      "enum": ["pre-event", "in-progress", "final", "postponed", "cancelled"],
+      "description": "Current event status."
+    },
+    "sport": {
+      "type": "string",
+      "enum": ["football", "baseball", "basketball", "hockey", "soccer", "golf", "tennis"],
+      "description": "Sport category."
+    },
+    "league": {
+      "type": "string",
+      "description": "League identifier (e.g., nfl, mlb, nba, nhl)."
+    },
+    "homeTeam": {
+      "$ref": "#/$defs/TeamRef"
+    },
+    "awayTeam": {
+      "$ref": "#/$defs/TeamRef"
+    },
+    "homeScore": {
+      "type": ["integer", "null"],
+      "minimum": 0,
+      "description": "Home team score."
+    },
+    "awayScore": {
+      "type": ["integer", "null"],
+      "minimum": 0,
+      "description": "Away team score."
+    },
+    "periods": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "periodNumber": {
+            "type": "integer"
+          },
+          "homeScore": {
+            "type": "integer"
+          },
+          "awayScore": {
+            "type": "integer"
+          }
+        }
+      },
+      "description": "Period/quarter/inning breakdown of the score."
+    },
+    "venue": {
+      "type": ["string", "null"],
+      "description": "Venue where the event takes place."
+    },
+    "attendance": {
+      "type": ["integer", "null"],
+      "description": "Game attendance."
+    }
+  },
+  "required": ["eventId", "startDateTime", "status", "sport", "league"],
+  "$defs": {
+    "TeamRef": {
+      "type": "object",
+      "properties": {
+        "teamId": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "abbreviation": {
+          "type": "string"
+        }
+      },
+      "required": ["teamId", "name"]
+    }
+  }
+}

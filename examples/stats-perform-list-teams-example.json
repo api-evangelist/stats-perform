@@ -1,0 +1,40 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "https://api.stats.com/v1/stats/basketball/nba/teams/?api_key=your_api_key"
+  },
+  "response": {
+    "status": 200,
+    "body": {
+      "apiResults": [
+        {
+          "teamId": "GSW",
+          "name": "Golden State Warriors",
+          "abbreviation": "GSW",
+          "city": "San Francisco",
+          "conference": "Western",
+          "division": "Pacific",
+          "logoUrl": "https://stats.com/logos/nba/gsw.png"
+        },
+        {
+          "teamId": "BOS",
+          "name": "Boston Celtics",
+          "abbreviation": "BOS",
+          "city": "Boston",
+          "conference": "Eastern",
+          "division": "Atlantic",
+          "logoUrl": "https://stats.com/logos/nba/bos.png"
+        },
+        {
+          "teamId": "LAL",
+          "name": "Los Angeles Lakers",
+          "abbreviation": "LAL",
+          "city": "Los Angeles",
+          "conference": "Western",
+          "division": "Pacific",
+          "logoUrl": "https://stats.com/logos/nba/lal.png"
+        }
+      ]
+    }
+  }
+}

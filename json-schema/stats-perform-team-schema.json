@@ -1,0 +1,56 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/stats-perform/main/json-schema/stats-perform-team-schema.json",
+  "title": "Stats Perform Team",
+  "description": "Schema for a Stats Perform sports team including metadata and categorization.",
+  "type": "object",
+  "properties": {
+    "teamId": {
+      "type": "string",
+      "description": "Unique team identifier."
+    },
+    "name": {
+      "type": "string",
+      "description": "Full team name."
+    },
+    "abbreviation": {
+      "type": ["string", "null"],
+      "description": "Team abbreviation."
+    },
+    "city": {
+      "type": ["string", "null"],
+      "description": "Team city."
+    },
+    "conference": {
+      "type": ["string", "null"],
+      "description": "Conference the team belongs to."
+    },
+    "division": {
+      "type": ["string", "null"],
+      "description": "Division the team belongs to."
+    },
+    "sport": {
+      "type": "string",
+      "enum": ["football", "baseball", "basketball", "hockey", "soccer", "golf", "tennis"],
+      "description": "Sport the team competes in."
+    },
+    "league": {
+      "type": "string",
+      "description": "League identifier."
+    },
+    "logoUrl": {
+      "type": ["string", "null"],
+      "format": "uri",
+      "description": "URL to the team logo."
+    },
+    "founded": {
+      "type": ["integer", "null"],
+      "description": "Year the team was founded."
+    },
+    "venue": {
+      "type": ["string", "null"],
+      "description": "Name of the team's home venue."
+    }
+  },
+  "required": ["teamId", "name", "sport", "league"]
+}

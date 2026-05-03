@@ -1,0 +1,99 @@
+extends: spectral:oas
+rules:
+  stats-perform-api-key-required:
+    description: >-
+      Stats Perform STATS API requires an API key passed as "api_key" query
+      parameter for all authenticated endpoints.
+    message: >-
+      Operations should require the "api_key" query parameter for
+      authentication.
+    severity: error
+    given: "$.paths[*][*]"
+    then:
+      field: parameters
+      function: truthy
+
+  stats-perform-path-sport-prefix:
+    description: >-
+      Stats Perform paths follow a consistent structure:
+      /stats/{sport}/{leaguePath}/... or /editorial/{sport}/{leaguePath}/...
+      The sport path parameter must be one of the defined sport types.
+    message: >-
+      Paths under /stats/ or /editorial/ must include sport and leaguePath
+      template parameters.
+    severity: warn
+    given: "$.paths[?(@ =~ /^\\/stats\\/|^\\/editorial\\//)]"
+    then:
+      function: pattern
+      functionOptions:
+        match: ".*\\{sport\\}.*\\{leaguePath\\}.*"
+
+  stats-perform-operation-ids-camel-case:
+    description: >-
+      Stats Perform API operation IDs use camelCase naming convention.
+    message: "Operation ID '{{value}}' should use camelCase."
+    severity: warn
+    given: "$.paths[*][*].operationId"
+    then:
+      function: casing
+      functionOptions:
+        type: camel
+
+  stats-perform-summaries-title-case:
+    description: >-
+      All Stats Perform API operation summaries must use Title Case.
+    message: "Summary '{{value}}' should be in Title Case."
+    severity: warn
+    given: "$.paths[*][*].summary"
+    then:
+      function: pattern
+      functionOptions:
+        match: "^[A-Z][a-zA-Z0-9]*(\\s[A-Z][a-zA-Z0-9]*)*$"
+
+  stats-perform-tags-required:
+    description: >-
+      Every Stats Perform API operation must have at least one tag for
+      proper documentation grouping.
+    message: "Operations must declare at least one tag."
+    severity: error
+    given: "$.paths[*][*]"
+    then:
+      field: tags
+      function: truthy
+
+  stats-perform-api-results-wrapper:
+    description: >-
+      Stats Perform API list responses typically wrap their data in an
+      "apiResults" array. List operation responses should follow this pattern.
+    message: >-
+      List operation 200 responses should include an "apiResults" property
+      in the response schema.
+    severity: hint
+    given: "$.paths[?(@ =~ /\\/$/)]..responses['200'].content['application/json'].schema.properties"
+    then:
+      field: apiResults
+      function: truthy
+
+  stats-perform-case-sensitive-paths:
+    description: >-
+      Stats Perform path segments are case-sensitive. Decode endpoint paths
+      such as /decode/networkTypes/ use camelCase. All path segments must
+      match the documented casing exactly.
+    message: >-
+      Path segments are case-sensitive in the Stats Perform API. Ensure
+      correct casing in all path segments.
+    severity: error
+    given: "$.paths"
+    then:
+      function: pattern
+      functionOptions:
+        notMatch: ".*[A-Z]{2,}.*"
+
+  stats-perform-event-status-values:
+    description: >-
+      Stats Perform uses consistent event status values across all sports.
+    message: "Event status should be one of: pre-event, in-progress, final, postponed, cancelled."
+    severity: hint
+    given: "$.components.schemas[*].properties.status.enum"
+    then:
+      function: truthy
