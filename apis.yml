@@ -78,7 +78,7 @@ common:
     url: json-schema/stats-perform-team-schema.json
   - type: JSONStructure
     url: json-structure/stats-perform-event-structure.json
-  - type: JSON-LD
+  - type: JSONLD
     url: json-ld/stats-perform-context.jsonld
   - type: SpectralRules
     url: rules/stats-perform-rules.yml
