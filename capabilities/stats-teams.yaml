@@ -1,0 +1,114 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Stats Perform STATS API — Teams
+  description: 'Stats Perform STATS API — Teams. 2 operations. Lead operation: List Teams. Self-contained Naftiko capability
+    covering one Stats Perform business surface.'
+  tags:
+  - Stats Perform
+  - Teams
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    STATS_PERFORM_API_KEY: STATS_PERFORM_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: stats-teams
+    baseUri: https://api.stats.com/v1
+    description: Stats Perform STATS API — Teams business capability. Self-contained, no shared references.
+    resources:
+    - name: stats-sport-leaguePath-teams
+      path: /stats/{sport}/{leaguePath}/teams/
+      operations:
+      - name: listteams
+        method: GET
+        description: List Teams
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: stats-sport-leaguePath-teams-teamId
+      path: /stats/{sport}/{leaguePath}/teams/{teamId}
+      operations:
+      - name: getteam
+        method: GET
+        description: Get Team
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: teamId
+          in: path
+          type: string
+          description: The unique team identifier.
+          required: true
+    authentication:
+      type: apikey
+      key: api_key
+      value: '{{env.STATS_PERFORM_API_KEY}}'
+      placement: query
+  exposes:
+  - type: rest
+    namespace: stats-teams-rest
+    port: 8080
+    description: REST adapter for Stats Perform STATS API — Teams. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/stats/{sport}/{leaguepath}/teams
+      name: stats-sport-leaguepath-teams
+      description: REST surface for stats-sport-leaguePath-teams.
+      operations:
+      - method: GET
+        name: listteams
+        description: List Teams
+        call: stats-teams.listteams
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/stats/{sport}/{leaguepath}/teams/{teamid}
+      name: stats-sport-leaguepath-teams-teamid
+      description: REST surface for stats-sport-leaguePath-teams-teamId.
+      operations:
+      - method: GET
+        name: getteam
+        description: Get Team
+        call: stats-teams.getteam
+        with:
+          teamId: rest.teamId
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: stats-teams-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Stats Perform STATS API — Teams. One tool per consumed operation, routed inline through this
+      capability's consumes block.
+    tools:
+    - name: list-teams
+      description: List Teams
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: stats-teams.listteams
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-team
+      description: Get Team
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: stats-teams.getteam
+      with:
+        teamId: tools.teamId
+      outputParameters:
+      - type: object
+        mapping: $.

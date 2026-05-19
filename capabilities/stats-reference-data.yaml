@@ -1,0 +1,72 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Stats Perform STATS API — Reference Data
+  description: 'Stats Perform STATS API — Reference Data. 1 operations. Lead operation: Decode Network Types. Self-contained
+    Naftiko capability covering one Stats Perform business surface.'
+  tags:
+  - Stats Perform
+  - Reference Data
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    STATS_PERFORM_API_KEY: STATS_PERFORM_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: stats-reference-data
+    baseUri: https://api.stats.com/v1
+    description: Stats Perform STATS API — Reference Data business capability. Self-contained, no shared references.
+    resources:
+    - name: decode-networkTypes
+      path: /decode/networkTypes/
+      operations:
+      - name: decodenetworktypes
+        method: GET
+        description: Decode Network Types
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: apikey
+      key: api_key
+      value: '{{env.STATS_PERFORM_API_KEY}}'
+      placement: query
+  exposes:
+  - type: rest
+    namespace: stats-reference-data-rest
+    port: 8080
+    description: REST adapter for Stats Perform STATS API — Reference Data. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/decode/networktypes
+      name: decode-networktypes
+      description: REST surface for decode-networkTypes.
+      operations:
+      - method: GET
+        name: decodenetworktypes
+        description: Decode Network Types
+        call: stats-reference-data.decodenetworktypes
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: stats-reference-data-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Stats Perform STATS API — Reference Data. One tool per consumed operation, routed inline
+      through this capability's consumes block.
+    tools:
+    - name: decode-network-types
+      description: Decode Network Types
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: stats-reference-data.decodenetworktypes
+      outputParameters:
+      - type: object
+        mapping: $.
