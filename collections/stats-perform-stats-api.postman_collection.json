@@ -1,0 +1,3041 @@
+{
+  "item": [
+    {
+      "id": "b22208b7-3f8a-49a8-b526-ffb506ee3d67",
+      "name": "Events",
+      "description": {
+        "content": "Access event (game/match) data including live scores, box scores, play-by-play, and results across all supported sports.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "2cbfa701-c803-490d-b8ca-e418deb2f847",
+          "name": "Get Event Score",
+          "request": {
+            "name": "Get Event Score",
+            "description": {
+              "content": "Returns the current or final score for a specific event, including period/quarter/inning-by-inning breakdown and game status.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "stats",
+                ":sport",
+                ":leaguePath",
+                "scores",
+                ":eventId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "api_key",
+                  "value": "<string>",
+                  "description": "(Required) Your Stats Perform API key."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "sport",
+                  "description": "(Required) The sport category."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "leaguePath",
+                  "description": "(Required) The league path identifier (e.g., nfl, mlb, nba, nhl, epl, pga, atp)."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "eventId",
+                  "description": "(Required) The unique event identifier."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "2d9ace03-4fe2-4011-ad2a-3207f4219852",
+              "name": "Event score data",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "stats",
+                    ":sport",
+                    ":leaguePath",
+                    "scores",
+                    ":eventId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "api_key",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "api_key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "sport",
+                      "description": "(Required) The sport category."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "leaguePath",
+                      "description": "(Required) The league path identifier (e.g., nfl, mlb, nba, nhl, epl, pga, atp)."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "eventId",
+                      "description": "(Required) The unique event identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"eventId\": \"string\",\n  \"startDateTime\": \"2005-11-09T17:05:14.401Z\",\n  \"status\": \"string\",\n  \"homeTeam\": {\n    \"teamId\": \"string\",\n    \"name\": \"string\",\n    \"abbreviation\": \"string\"\n  },\n  \"awayTeam\": {\n    \"teamId\": \"string\",\n    \"name\": \"string\",\n    \"abbreviation\": \"string\"\n  },\n  \"homeScore\": 2873,\n  \"awayScore\": 4760,\n  \"periods\": [\n    {\n      \"periodNumber\": 3856,\n      \"homeScore\": 9875,\n      \"awayScore\": 4492\n    },\n    {\n      \"periodNumber\": 1530,\n      \"homeScore\": 7776,\n      \"awayScore\": 7352\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "21ed7f1f-816c-492e-9c5e-092a3d2cd425",
+              "name": "Missing or invalid API key",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "stats",
+                    ":sport",
+                    ":leaguePath",
+                    "scores",
+                    ":eventId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "api_key",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "api_key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "sport",
+                      "description": "(Required) The sport category."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "leaguePath",
+                      "description": "(Required) The league path identifier (e.g., nfl, mlb, nba, nhl, epl, pga, atp)."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "eventId",
+                      "description": "(Required) The unique event identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "83128108-ac85-48a8-ba74-d669e0f3aec0",
+              "name": "Resource not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "stats",
+                    ":sport",
+                    ":leaguePath",
+                    "scores",
+                    ":eventId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "api_key",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "api_key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "sport",
+                      "description": "(Required) The sport category."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "leaguePath",
+                      "description": "(Required) The league path identifier (e.g., nfl, mlb, nba, nhl, epl, pga, atp)."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "eventId",
+                      "description": "(Required) The unique event identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "94b356dc-e51c-4542-8243-e83ec8cb02e2",
+          "name": "Get Event Box Score",
+          "request": {
+            "name": "Get Event Box Score",
+            "description": {
+              "content": "Returns the full box score for a specific event including all player and team statistics for the game.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "stats",
+                ":sport",
+                ":leaguePath",
+                "box",
+                ":eventId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "api_key",
+                  "value": "<string>",
+                  "description": "(Required) Your Stats Perform API key."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "sport",
+                  "description": "(Required) The sport category."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "leaguePath",
+                  "description": "(Required) The league path identifier (e.g., nfl, mlb, nba, nhl, epl, pga, atp)."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "eventId",
+                  "description": "(Required) The unique event identifier."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "44d8df97-e548-4e2b-90ea-b66a2943771e",
+              "name": "Full box score with player statistics",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "stats",
+                    ":sport",
+                    ":leaguePath",
+                    "box",
+                    ":eventId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "api_key",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "api_key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "sport",
+                      "description": "(Required) The sport category."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "leaguePath",
+                      "description": "(Required) The league path identifier (e.g., nfl, mlb, nba, nhl, epl, pga, atp)."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "eventId",
+                      "description": "(Required) The unique event identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"eventId\": \"string\",\n  \"homeTeam\": {\n    \"teamId\": \"string\",\n    \"name\": \"string\",\n    \"abbreviation\": \"string\"\n  },\n  \"awayTeam\": {\n    \"teamId\": \"string\",\n    \"name\": \"string\",\n    \"abbreviation\": \"string\"\n  },\n  \"homeStats\": {\n    \"key_0\": false,\n    \"key_1\": 2026.8292450388115\n  },\n  \"awayStats\": {\n    \"key_0\": \"string\",\n    \"key_1\": \"string\",\n    \"key_2\": false,\n    \"key_3\": 4448.9907244932965,\n    \"key_4\": true\n  },\n  \"playerStats\": [\n    {\n      \"playerId\": \"string\",\n      \"playerName\": \"string\",\n      \"teamId\": \"string\",\n      \"stats\": {\n        \"key_0\": false,\n        \"key_1\": 6903.51990848332\n      }\n    },\n    {\n      \"playerId\": \"string\",\n      \"playerName\": \"string\",\n      \"teamId\": \"string\",\n      \"stats\": {\n        \"key_0\": 6409,\n        \"key_1\": 8518.278055395867,\n        \"key_2\": 9724.771585416016,\n        \"key_3\": \"string\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5d1346fe-d501-4cac-b757-e3ddeed01aa2",
+              "name": "Missing or invalid API key",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "stats",
+                    ":sport",
+                    ":leaguePath",
+                    "box",
+                    ":eventId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "api_key",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "api_key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "sport",
+                      "description": "(Required) The sport category."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "leaguePath",
+                      "description": "(Required) The league path identifier (e.g., nfl, mlb, nba, nhl, epl, pga, atp)."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "eventId",
+                      "description": "(Required) The unique event identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9f2ce3e0-8384-4164-986f-cf51e30bd106",
+              "name": "Resource not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "stats",
+                    ":sport",
+                    ":leaguePath",
+                    "box",
+                    ":eventId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "api_key",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "api_key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "sport",
+                      "description": "(Required) The sport category."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "leaguePath",
+                      "description": "(Required) The league path identifier (e.g., nfl, mlb, nba, nhl, epl, pga, atp)."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "eventId",
+                      "description": "(Required) The unique event identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "df26fd28-a220-4037-861f-24bd7d0fb4d3",
+          "name": "Get Event Play-by-Play",
+          "request": {
+            "name": "Get Event Play-by-Play",
+            "description": {
+              "content": "Returns detailed play-by-play data for a specific event with all game actions, times, and player involvement.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "stats",
+                ":sport",
+                ":leaguePath",
+                "playbyplay",
+                ":eventId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "api_key",
+                  "value": "<string>",
+                  "description": "(Required) Your Stats Perform API key."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "sport",
+                  "description": "(Required) The sport category."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "leaguePath",
+                  "description": "(Required) The league path identifier (e.g., nfl, mlb, nba, nhl, epl, pga, atp)."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "eventId",
+                  "description": "(Required) The unique event identifier."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "9cbc3dd8-18a0-4f76-b78d-26fa426e464b",
+              "name": "Play-by-play event data",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "stats",
+                    ":sport",
+                    ":leaguePath",
+                    "playbyplay",
+                    ":eventId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "api_key",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "api_key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "sport",
+                      "description": "(Required) The sport category."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "leaguePath",
+                      "description": "(Required) The league path identifier (e.g., nfl, mlb, nba, nhl, epl, pga, atp)."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "eventId",
+                      "description": "(Required) The unique event identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"eventId\": \"string\",\n  \"plays\": [\n    {\n      \"playId\": \"string\",\n      \"quarter\": 231,\n      \"time\": \"string\",\n      \"description\": \"string\",\n      \"teamId\": \"string\",\n      \"playerId\": \"string\"\n    },\n    {\n      \"playId\": \"string\",\n      \"quarter\": 1775,\n      \"time\": \"string\",\n      \"description\": \"string\",\n      \"teamId\": \"string\",\n      \"playerId\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "bb3fa6de-d756-4437-996c-57d6c2ec074d",
+              "name": "Missing or invalid API key",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "stats",
+                    ":sport",
+                    ":leaguePath",
+                    "playbyplay",
+                    ":eventId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "api_key",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "api_key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "sport",
+                      "description": "(Required) The sport category."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "leaguePath",
+                      "description": "(Required) The league path identifier (e.g., nfl, mlb, nba, nhl, epl, pga, atp)."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "eventId",
+                      "description": "(Required) The unique event identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "cceddf7e-c392-4495-936f-b13e1887dbd2",
+              "name": "Resource not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "stats",
+                    ":sport",
+                    ":leaguePath",
+                    "playbyplay",
+                    ":eventId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "api_key",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "api_key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "sport",
+                      "description": "(Required) The sport category."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "leaguePath",
+                      "description": "(Required) The league path identifier (e.g., nfl, mlb, nba, nhl, epl, pga, atp)."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "eventId",
+                      "description": "(Required) The unique event identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e2f32b15-10d9-4bcb-8f70-1ab817172459",
+          "name": "List Scores",
+          "request": {
+            "name": "List Scores",
+            "description": {
+              "content": "Returns scores for multiple events on a given date or for the current day, supporting all configured leagues.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "stats",
+                ":sport",
+                ":leaguePath",
+                "scores",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "api_key",
+                  "value": "<string>",
+                  "description": "(Required) Your Stats Perform API key."
+                },
+                {
+                  "disabled": false,
+                  "key": "date",
+                  "value": "<date>",
+                  "description": "Date for which to retrieve scores (YYYYMMDD format)."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "sport",
+                  "description": "(Required) The sport category."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "leaguePath",
+                  "description": "(Required) The league path identifier (e.g., nfl, mlb, nba, nhl, epl, pga, atp)."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ed79f196-c3b1-47eb-ad73-e15d8e77f23c",
+              "name": "List of event scores",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "stats",
+                    ":sport",
+                    ":leaguePath",
+                    "scores",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "api_key",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "date",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "api_key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "sport",
+                      "description": "(Required) The sport category."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "leaguePath",
+                      "description": "(Required) The league path identifier (e.g., nfl, mlb, nba, nhl, epl, pga, atp)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"apiResults\": [\n    {\n      \"eventId\": \"string\",\n      \"startDateTime\": \"1987-12-21T04:25:15.331Z\",\n      \"status\": \"string\",\n      \"homeTeam\": {\n        \"teamId\": \"string\",\n        \"name\": \"string\",\n        \"abbreviation\": \"string\"\n      },\n      \"awayTeam\": {\n        \"teamId\": \"string\",\n        \"name\": \"string\",\n        \"abbreviation\": \"string\"\n      },\n      \"homeScore\": 9803,\n      \"awayScore\": 9338,\n      \"periods\": [\n        {\n          \"periodNumber\": 3638,\n          \"homeScore\": 9377,\n          \"awayScore\": 7218\n        },\n        {\n          \"periodNumber\": 5506,\n          \"homeScore\": 4365,\n          \"awayScore\": 3105\n        }\n      ]\n    },\n    {\n      \"eventId\": \"string\",\n      \"startDateTime\": \"1985-08-13T09:44:53.800Z\",\n      \"status\": \"string\",\n      \"homeTeam\": {\n        \"teamId\": \"string\",\n        \"name\": \"string\",\n        \"abbreviation\": \"string\"\n      },\n      \"awayTeam\": {\n        \"teamId\": \"string\",\n        \"name\": \"string\",\n        \"abbreviation\": \"string\"\n      },\n      \"homeScore\": 4504,\n      \"awayScore\": 3472,\n      \"periods\": [\n        {\n          \"periodNumber\": 1293,\n          \"homeScore\": 3984,\n          \"awayScore\": 7971\n        },\n        {\n          \"periodNumber\": 6714,\n          \"homeScore\": 2498,\n          \"awayScore\": 3395\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0c6db6f7-5bfd-4de1-8080-3a40e3b8a12b",
+              "name": "Missing or invalid API key",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "stats",
+                    ":sport",
+                    ":leaguePath",
+                    "scores",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "api_key",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "date",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "api_key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "sport",
+                      "description": "(Required) The sport category."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "leaguePath",
+                      "description": "(Required) The league path identifier (e.g., nfl, mlb, nba, nhl, epl, pga, atp)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "13fd87c6-4d2d-48ab-85ac-60d9172d1c23",
+      "name": "Teams",
+      "description": {
+        "content": "Retrieve team rosters, statistics, and metadata for all supported sports and leagues.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "f41bdb9d-b86d-4076-b999-28e9307efec6",
+          "name": "List Teams",
+          "request": {
+            "name": "List Teams",
+            "description": {
+              "content": "Returns a list of all teams in a league including team IDs, names, abbreviations, and conference/division information.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "stats",
+                ":sport",
+                ":leaguePath",
+                "teams",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "api_key",
+                  "value": "<string>",
+                  "description": "(Required) Your Stats Perform API key."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "sport",
+                  "description": "(Required) The sport category."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "leaguePath",
+                  "description": "(Required) The league path identifier (e.g., nfl, mlb, nba, nhl, epl, pga, atp)."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e482b53b-3df7-4205-a14f-c358f73d249c",
+              "name": "List of teams",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "stats",
+                    ":sport",
+                    ":leaguePath",
+                    "teams",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "api_key",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "api_key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "sport",
+                      "description": "(Required) The sport category."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "leaguePath",
+                      "description": "(Required) The league path identifier (e.g., nfl, mlb, nba, nhl, epl, pga, atp)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"apiResults\": [\n    {\n      \"teamId\": \"string\",\n      \"name\": \"string\",\n      \"abbreviation\": \"string\",\n      \"city\": \"string\",\n      \"conference\": \"string\",\n      \"division\": \"string\",\n      \"logoUrl\": \"http://cQWRnpHgUknVNSJnBfC.fel,ch0MGIRCdYC8X\"\n    },\n    {\n      \"teamId\": \"string\",\n      \"name\": \"string\",\n      \"abbreviation\": \"string\",\n      \"city\": \"string\",\n      \"conference\": \"string\",\n      \"division\": \"string\",\n      \"logoUrl\": \"https://FvlbusUQuQaXe.xiaDYACqaBDRWf8ExrpsGy41JuiS\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7eb0ce5d-2925-4955-9896-d25ce293795f",
+              "name": "Missing or invalid API key",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "stats",
+                    ":sport",
+                    ":leaguePath",
+                    "teams",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "api_key",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "api_key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "sport",
+                      "description": "(Required) The sport category."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "leaguePath",
+                      "description": "(Required) The league path identifier (e.g., nfl, mlb, nba, nhl, epl, pga, atp)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "65db12c4-1d7d-482c-bb05-93bbe5f2b378",
+          "name": "Get Team",
+          "request": {
+            "name": "Get Team",
+            "description": {
+              "content": "Returns detailed information about a specific team including roster, season statistics, and team metadata.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "stats",
+                ":sport",
+                ":leaguePath",
+                "teams",
+                ":teamId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "api_key",
+                  "value": "<string>",
+                  "description": "(Required) Your Stats Perform API key."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "sport",
+                  "description": "(Required) The sport category."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "leaguePath",
+                  "description": "(Required) The league path identifier (e.g., nfl, mlb, nba, nhl, epl, pga, atp)."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "teamId",
+                  "description": "(Required) The unique team identifier."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "1c898bcd-ab4b-4d76-90cc-73d7b46cd1ec",
+              "name": "Team details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "stats",
+                    ":sport",
+                    ":leaguePath",
+                    "teams",
+                    ":teamId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "api_key",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "api_key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "sport",
+                      "description": "(Required) The sport category."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "leaguePath",
+                      "description": "(Required) The league path identifier (e.g., nfl, mlb, nba, nhl, epl, pga, atp)."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "teamId",
+                      "description": "(Required) The unique team identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"teamId\": \"string\",\n  \"name\": \"string\",\n  \"abbreviation\": \"string\",\n  \"city\": \"string\",\n  \"conference\": \"string\",\n  \"division\": \"string\",\n  \"logoUrl\": \"http://XoLJmsbRhQkflFgzFvNoYVafq.usV+IZ7PwEKDzffwrEWNEZJ7+LP92\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "89d580f7-2788-429b-a05e-dcd7a9d745bf",
+              "name": "Missing or invalid API key",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "stats",
+                    ":sport",
+                    ":leaguePath",
+                    "teams",
+                    ":teamId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "api_key",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "api_key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "sport",
+                      "description": "(Required) The sport category."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "leaguePath",
+                      "description": "(Required) The league path identifier (e.g., nfl, mlb, nba, nhl, epl, pga, atp)."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "teamId",
+                      "description": "(Required) The unique team identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "aa71f3a7-e2f8-4c7f-9c96-4d9266218e45",
+              "name": "Resource not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "stats",
+                    ":sport",
+                    ":leaguePath",
+                    "teams",
+                    ":teamId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "api_key",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "api_key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "sport",
+                      "description": "(Required) The sport category."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "leaguePath",
+                      "description": "(Required) The league path identifier (e.g., nfl, mlb, nba, nhl, epl, pga, atp)."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "teamId",
+                      "description": "(Required) The unique team identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "d6657960-0771-4c49-83ea-2324ceb235ec",
+      "name": "Players",
+      "description": {
+        "content": "Access player profiles, career statistics, and game-level performance data.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "7e4670e4-024b-40ad-892b-03dd9b7b64bd",
+          "name": "Get Player",
+          "request": {
+            "name": "Get Player",
+            "description": {
+              "content": "Returns detailed information about a specific player including profile, career information, and current season statistics.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "stats",
+                ":sport",
+                ":leaguePath",
+                "players",
+                ":playerId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "api_key",
+                  "value": "<string>",
+                  "description": "(Required) Your Stats Perform API key."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "sport",
+                  "description": "(Required) The sport category."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "leaguePath",
+                  "description": "(Required) The league path identifier (e.g., nfl, mlb, nba, nhl, epl, pga, atp)."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "playerId",
+                  "description": "(Required) The unique player identifier."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a2c3be22-4d9e-404a-89ec-b2dbdb899633",
+              "name": "Player profile and statistics",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "stats",
+                    ":sport",
+                    ":leaguePath",
+                    "players",
+                    ":playerId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "api_key",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "api_key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "sport",
+                      "description": "(Required) The sport category."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "leaguePath",
+                      "description": "(Required) The league path identifier (e.g., nfl, mlb, nba, nhl, epl, pga, atp)."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "playerId",
+                      "description": "(Required) The unique player identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"playerId\": \"string\",\n  \"firstName\": \"string\",\n  \"lastName\": \"string\",\n  \"position\": \"string\",\n  \"teamId\": \"string\",\n  \"jerseyNumber\": \"string\",\n  \"birthDate\": \"1978-09-14\",\n  \"birthCity\": \"string\",\n  \"birthCountry\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c8a523e8-c3cc-4fb6-99b0-452ded6c1b16",
+              "name": "Missing or invalid API key",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "stats",
+                    ":sport",
+                    ":leaguePath",
+                    "players",
+                    ":playerId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "api_key",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "api_key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "sport",
+                      "description": "(Required) The sport category."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "leaguePath",
+                      "description": "(Required) The league path identifier (e.g., nfl, mlb, nba, nhl, epl, pga, atp)."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "playerId",
+                      "description": "(Required) The unique player identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6d8d59fb-b262-44ae-b20f-07b01983b7b7",
+              "name": "Resource not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "stats",
+                    ":sport",
+                    ":leaguePath",
+                    "players",
+                    ":playerId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "api_key",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "api_key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "sport",
+                      "description": "(Required) The sport category."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "leaguePath",
+                      "description": "(Required) The league path identifier (e.g., nfl, mlb, nba, nhl, epl, pga, atp)."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "playerId",
+                      "description": "(Required) The unique player identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "d75f667b-138c-45cd-89ee-2081b6090a84",
+      "name": "Standings",
+      "description": {
+        "content": "Retrieve league and conference standings with win/loss records and tiebreaker data.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "629d5b7c-396a-431f-8838-3b23478fb6ce",
+          "name": "Get Standings",
+          "request": {
+            "name": "Get Standings",
+            "description": {
+              "content": "Returns league and conference standings with win/loss records, points, and tiebreaker information.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "stats",
+                ":sport",
+                ":leaguePath",
+                "standings",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "api_key",
+                  "value": "<string>",
+                  "description": "(Required) Your Stats Perform API key."
+                },
+                {
+                  "disabled": false,
+                  "key": "season",
+                  "value": "<string>",
+                  "description": "Season year (e.g., 2025). Defaults to current season."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "sport",
+                  "description": "(Required) The sport category."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "leaguePath",
+                  "description": "(Required) The league path identifier (e.g., nfl, mlb, nba, nhl, epl, pga, atp)."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "1fd43f04-fb91-40c1-96f1-08f2df6713a4",
+              "name": "League standings",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "stats",
+                    ":sport",
+                    ":leaguePath",
+                    "standings",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "api_key",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "season",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "api_key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "sport",
+                      "description": "(Required) The sport category."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "leaguePath",
+                      "description": "(Required) The league path identifier (e.g., nfl, mlb, nba, nhl, epl, pga, atp)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"league\": \"string\",\n  \"season\": \"string\",\n  \"conferences\": [\n    {\n      \"conferenceName\": \"string\",\n      \"divisions\": [\n        {\n          \"divisionName\": \"string\",\n          \"teams\": [\n            {\n              \"teamId\": \"string\",\n              \"name\": \"string\",\n              \"wins\": 683,\n              \"losses\": 4870,\n              \"ties\": 5992,\n              \"points\": 7929,\n              \"winPct\": 2063.036348566082\n            },\n            {\n              \"teamId\": \"string\",\n              \"name\": \"string\",\n              \"wins\": 5010,\n              \"losses\": 6947,\n              \"ties\": 3232,\n              \"points\": 7237,\n              \"winPct\": 497.95492534780107\n            }\n          ]\n        },\n        {\n          \"divisionName\": \"string\",\n          \"teams\": [\n            {\n              \"teamId\": \"string\",\n              \"name\": \"string\",\n              \"wins\": 1397,\n              \"losses\": 7409,\n              \"ties\": 4835,\n              \"points\": 1554,\n              \"winPct\": 7316.08248427686\n            },\n            {\n              \"teamId\": \"string\",\n              \"name\": \"string\",\n              \"wins\": 2961,\n              \"losses\": 3586,\n              \"ties\": 8246,\n              \"points\": 2392,\n              \"winPct\": 953.8586629368207\n            }\n          ]\n        }\n      ]\n    },\n    {\n      \"conferenceName\": \"string\",\n      \"divisions\": [\n        {\n          \"divisionName\": \"string\",\n          \"teams\": [\n            {\n              \"teamId\": \"string\",\n              \"name\": \"string\",\n              \"wins\": 5146,\n              \"losses\": 1521,\n              \"ties\": 666,\n              \"points\": 2055,\n              \"winPct\": 3781.6127011162757\n            },\n            {\n              \"teamId\": \"string\",\n              \"name\": \"string\",\n              \"wins\": 5980,\n              \"losses\": 2575,\n              \"ties\": 1817,\n              \"points\": 1440,\n              \"winPct\": 5260.607388884838\n            }\n          ]\n        },\n        {\n          \"divisionName\": \"string\",\n          \"teams\": [\n            {\n              \"teamId\": \"string\",\n              \"name\": \"string\",\n              \"wins\": 9276,\n              \"losses\": 1333,\n              \"ties\": 835,\n              \"points\": 6647,\n              \"winPct\": 1050.661628084939\n            },\n            {\n              \"teamId\": \"string\",\n              \"name\": \"string\",\n              \"wins\": 4343,\n              \"losses\": 5526,\n              \"ties\": 8589,\n              \"points\": 9138,\n              \"winPct\": 5564.180295963897\n            }\n          ]\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3c029533-4e06-40e2-9d80-c00c620d2fd5",
+              "name": "Missing or invalid API key",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "stats",
+                    ":sport",
+                    ":leaguePath",
+                    "standings",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "api_key",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "season",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "api_key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "sport",
+                      "description": "(Required) The sport category."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "leaguePath",
+                      "description": "(Required) The league path identifier (e.g., nfl, mlb, nba, nhl, epl, pga, atp)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "58b2f133-79cf-41bf-bdd5-c09b6f3158ec",
+      "name": "Schedules",
+      "description": {
+        "content": "Access schedules of upcoming events and results of past events for all leagues and dates.",
+        "type": "text/plain"
+      },
+      "item": [],
+      "event": []
+    },
+    {
+      "id": "2b19b1af-d416-4cc0-b0d1-2f038d03f646",
+      "name": "Statistics",
+      "description": {
+        "content": "Access cumulative season statistics for teams and players across all supported sports.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "bddcdaac-3715-4585-931a-8133f7058c7d",
+          "name": "Get Team Statistics",
+          "request": {
+            "name": "Get Team Statistics",
+            "description": {
+              "content": "Returns cumulative season statistics for a specific team.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "stats",
+                ":sport",
+                ":leaguePath",
+                "teams",
+                ":teamId",
+                "stats"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "api_key",
+                  "value": "<string>",
+                  "description": "(Required) Your Stats Perform API key."
+                },
+                {
+                  "disabled": false,
+                  "key": "season",
+                  "value": "<string>",
+                  "description": "Season year (e.g., 2025). Defaults to current season."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "sport",
+                  "description": "(Required) The sport category."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "leaguePath",
+                  "description": "(Required) The league path identifier (e.g., nfl, mlb, nba, nhl, epl, pga, atp)."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "teamId",
+                  "description": "(Required) The unique team identifier."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f1bebb2d-ac52-4178-815e-7076c3a5f396",
+              "name": "Team season statistics",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "stats",
+                    ":sport",
+                    ":leaguePath",
+                    "teams",
+                    ":teamId",
+                    "stats"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "api_key",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "season",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "api_key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "sport",
+                      "description": "(Required) The sport category."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "leaguePath",
+                      "description": "(Required) The league path identifier (e.g., nfl, mlb, nba, nhl, epl, pga, atp)."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "teamId",
+                      "description": "(Required) The unique team identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"teamId\": \"string\",\n  \"season\": \"string\",\n  \"stats\": {\n    \"key_0\": true,\n    \"key_1\": true\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6f42953d-bf2b-4511-8030-04e8aa09666d",
+              "name": "Missing or invalid API key",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "stats",
+                    ":sport",
+                    ":leaguePath",
+                    "teams",
+                    ":teamId",
+                    "stats"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "api_key",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "season",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "api_key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "sport",
+                      "description": "(Required) The sport category."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "leaguePath",
+                      "description": "(Required) The league path identifier (e.g., nfl, mlb, nba, nhl, epl, pga, atp)."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "teamId",
+                      "description": "(Required) The unique team identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3f21fd8e-0761-4bac-b0c6-d5596346c4d9",
+              "name": "Resource not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "stats",
+                    ":sport",
+                    ":leaguePath",
+                    "teams",
+                    ":teamId",
+                    "stats"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "api_key",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "season",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "api_key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "sport",
+                      "description": "(Required) The sport category."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "leaguePath",
+                      "description": "(Required) The league path identifier (e.g., nfl, mlb, nba, nhl, epl, pga, atp)."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "teamId",
+                      "description": "(Required) The unique team identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "de5a49bb-c5f4-4f56-bc05-a956581dadb9",
+          "name": "Get Player Statistics",
+          "request": {
+            "name": "Get Player Statistics",
+            "description": {
+              "content": "Returns cumulative season statistics for a specific player.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "stats",
+                ":sport",
+                ":leaguePath",
+                "players",
+                ":playerId",
+                "stats"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "api_key",
+                  "value": "<string>",
+                  "description": "(Required) Your Stats Perform API key."
+                },
+                {
+                  "disabled": false,
+                  "key": "season",
+                  "value": "<string>",
+                  "description": "Season year (e.g., 2025). Defaults to current season."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "sport",
+                  "description": "(Required) The sport category."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "leaguePath",
+                  "description": "(Required) The league path identifier (e.g., nfl, mlb, nba, nhl, epl, pga, atp)."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "playerId",
+                  "description": "(Required) The unique player identifier."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "9b11312c-d034-4bb7-88a3-dfaf3bbb9041",
+              "name": "Player season statistics",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "stats",
+                    ":sport",
+                    ":leaguePath",
+                    "players",
+                    ":playerId",
+                    "stats"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "api_key",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "season",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "api_key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "sport",
+                      "description": "(Required) The sport category."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "leaguePath",
+                      "description": "(Required) The league path identifier (e.g., nfl, mlb, nba, nhl, epl, pga, atp)."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "playerId",
+                      "description": "(Required) The unique player identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"playerId\": \"string\",\n  \"season\": \"string\",\n  \"stats\": {\n    \"key_0\": \"string\",\n    \"key_1\": 3265,\n    \"key_2\": false,\n    \"key_3\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "707666d3-893e-4f04-9757-010cc6a4392f",
+              "name": "Missing or invalid API key",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "stats",
+                    ":sport",
+                    ":leaguePath",
+                    "players",
+                    ":playerId",
+                    "stats"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "api_key",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "season",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "api_key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "sport",
+                      "description": "(Required) The sport category."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "leaguePath",
+                      "description": "(Required) The league path identifier (e.g., nfl, mlb, nba, nhl, epl, pga, atp)."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "playerId",
+                      "description": "(Required) The unique player identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "094b3d95-11a8-4498-a2df-cc0b9e798751",
+              "name": "Resource not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "stats",
+                    ":sport",
+                    ":leaguePath",
+                    "players",
+                    ":playerId",
+                    "stats"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "api_key",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "season",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "api_key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "sport",
+                      "description": "(Required) The sport category."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "leaguePath",
+                      "description": "(Required) The league path identifier (e.g., nfl, mlb, nba, nhl, epl, pga, atp)."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "playerId",
+                      "description": "(Required) The unique player identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "bece1a63-3307-4d61-af89-68ee5b36bf3a",
+      "name": "Editorial",
+      "description": {
+        "content": "Retrieve editorial content including news articles, previews, and recaps associated with events, teams, and players.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "3e6a4ec3-8cd0-4a60-b183-7c1518526492",
+          "name": "List News",
+          "request": {
+            "name": "List News",
+            "description": {
+              "content": "Returns editorial news articles, previews, and recaps for a specific sport and league.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "editorial",
+                ":sport",
+                ":leaguePath",
+                "news",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "api_key",
+                  "value": "<string>",
+                  "description": "(Required) Your Stats Perform API key."
+                },
+                {
+                  "disabled": false,
+                  "key": "count",
+                  "value": "<integer>",
+                  "description": "Number of articles to return."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "sport",
+                  "description": "(Required) The sport category."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "leaguePath",
+                  "description": "(Required) The league path identifier (e.g., nfl, mlb, nba, nhl, epl, pga, atp)."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "96708bf1-032c-4ee4-846c-706a667e49ce",
+              "name": "List of news articles",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "editorial",
+                    ":sport",
+                    ":leaguePath",
+                    "news",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "api_key",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "count",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "api_key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "sport",
+                      "description": "(Required) The sport category."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "leaguePath",
+                      "description": "(Required) The league path identifier (e.g., nfl, mlb, nba, nhl, epl, pga, atp)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"apiResults\": [\n    {\n      \"articleId\": \"string\",\n      \"headline\": \"string\",\n      \"subHeadline\": \"string\",\n      \"publishedAt\": \"1971-05-07T12:52:24.064Z\",\n      \"sport\": \"string\",\n      \"league\": \"string\",\n      \"body\": \"string\",\n      \"imageUrl\": \"https://cDHnBqVekLLszpLPb.dqbU,Aco8J1HuydCZ4I,VWB9eG+c7RI5slxyeP2dTv\"\n    },\n    {\n      \"articleId\": \"string\",\n      \"headline\": \"string\",\n      \"subHeadline\": \"string\",\n      \"publishedAt\": \"1961-12-28T14:43:42.039Z\",\n      \"sport\": \"string\",\n      \"league\": \"string\",\n      \"body\": \"string\",\n      \"imageUrl\": \"https://rsXNhnfnqxgNAhRPNVrLGFnrJwcdzok.rcrXHnhHIoTAexxCS26hLYJFwQO5crcF5y,z-BT\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b7ca7edb-0a44-4929-9414-dac0565f8817",
+              "name": "Missing or invalid API key",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "editorial",
+                    ":sport",
+                    ":leaguePath",
+                    "news",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "api_key",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "count",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "api_key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "sport",
+                      "description": "(Required) The sport category."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "leaguePath",
+                      "description": "(Required) The league path identifier (e.g., nfl, mlb, nba, nhl, epl, pga, atp)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "5fbecae7-5d92-4a49-baa7-5db7601c1b45",
+      "name": "Reference Data",
+      "description": {
+        "content": "Access reference data including league definitions, network types, and decode tables for API response values.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "b1ee72e9-73c9-4d5e-ba19-536f0efd31f1",
+          "name": "Decode Network Types",
+          "request": {
+            "name": "Decode Network Types",
+            "description": {
+              "content": "Returns the reference decode table for network type identifiers used in API responses. Path segments are case-sensitive.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "decode",
+                "networkTypes",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "api_key",
+                  "value": "<string>",
+                  "description": "(Required) Your Stats Perform API key."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c6f194a0-6c39-4b81-9621-53907c57be3e",
+              "name": "Network type decode table",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "decode",
+                    "networkTypes",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "api_key",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "api_key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"apiResults\": [\n    {\n      \"networkTypeId\": 6615,\n      \"name\": \"string\"\n    },\n    {\n      \"networkTypeId\": 7117,\n      \"name\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "19a0bf2c-1067-4f53-8216-404c11834323",
+              "name": "Missing or invalid API key",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "decode",
+                    "networkTypes",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "api_key",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "api_key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.stats.com/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "api_key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "query"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "95ac8b18-ffcc-41a6-b05f-f1d9729a320f",
+    "name": "Stats Perform STATS API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The STATS API from Stats Perform provides a comprehensive REST interface for accessing sports data across American Football (NFL, NCAAF), Baseball (MLB, MiLB), Basketball (NBA, NCAAB), Hockey (NHL), Soccer (MLS, EPL, Champions League), Golf (PGA), and Tennis (ATP, WTA). The API provides live scores, box scores, standings, schedules, player and team statistics, play-by-play data, editorial content, photos, and historical records. Authentication requires an API key and a secret for HMAC signing.\n\nContact Support:\n Name: Stats Perform Support\n Email: help@support.statsperform.com",
+      "type": "text/plain"
+    }
+  }
+}

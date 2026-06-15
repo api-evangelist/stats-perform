@@ -1,0 +1,506 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Stats Perform STATS API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "api_key",
+      "value": "{{api_key}}",
+      "placement": "query"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Events",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Event Score",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.stats.com/v1/stats/:sport/:leaguePath/scores/:eventId",
+            "params": [
+              {
+                "name": "sport",
+                "value": "",
+                "type": "path",
+                "description": "The sport category."
+              },
+              {
+                "name": "leaguePath",
+                "value": "",
+                "type": "path",
+                "description": "The league path identifier (e.g., nfl, mlb, nba, nhl, epl, pga, atp)."
+              },
+              {
+                "name": "eventId",
+                "value": "",
+                "type": "path",
+                "description": "The unique event identifier."
+              },
+              {
+                "name": "api_key",
+                "value": "",
+                "type": "query",
+                "description": "Your Stats Perform API key."
+              }
+            ]
+          },
+          "docs": "Returns the current or final score for a specific event, including period/quarter/inning-by-inning breakdown and game status."
+        },
+        {
+          "info": {
+            "name": "Get Event Box Score",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.stats.com/v1/stats/:sport/:leaguePath/box/:eventId",
+            "params": [
+              {
+                "name": "sport",
+                "value": "",
+                "type": "path",
+                "description": "The sport category."
+              },
+              {
+                "name": "leaguePath",
+                "value": "",
+                "type": "path",
+                "description": "The league path identifier (e.g., nfl, mlb, nba, nhl, epl, pga, atp)."
+              },
+              {
+                "name": "eventId",
+                "value": "",
+                "type": "path",
+                "description": "The unique event identifier."
+              },
+              {
+                "name": "api_key",
+                "value": "",
+                "type": "query",
+                "description": "Your Stats Perform API key."
+              }
+            ]
+          },
+          "docs": "Returns the full box score for a specific event including all player and team statistics for the game."
+        },
+        {
+          "info": {
+            "name": "Get Event Play-by-Play",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.stats.com/v1/stats/:sport/:leaguePath/playbyplay/:eventId",
+            "params": [
+              {
+                "name": "sport",
+                "value": "",
+                "type": "path",
+                "description": "The sport category."
+              },
+              {
+                "name": "leaguePath",
+                "value": "",
+                "type": "path",
+                "description": "The league path identifier (e.g., nfl, mlb, nba, nhl, epl, pga, atp)."
+              },
+              {
+                "name": "eventId",
+                "value": "",
+                "type": "path",
+                "description": "The unique event identifier."
+              },
+              {
+                "name": "api_key",
+                "value": "",
+                "type": "query",
+                "description": "Your Stats Perform API key."
+              }
+            ]
+          },
+          "docs": "Returns detailed play-by-play data for a specific event with all game actions, times, and player involvement."
+        },
+        {
+          "info": {
+            "name": "List Scores",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.stats.com/v1/stats/:sport/:leaguePath/scores/",
+            "params": [
+              {
+                "name": "sport",
+                "value": "",
+                "type": "path",
+                "description": "The sport category."
+              },
+              {
+                "name": "leaguePath",
+                "value": "",
+                "type": "path",
+                "description": "The league path identifier (e.g., nfl, mlb, nba, nhl, epl, pga, atp)."
+              },
+              {
+                "name": "api_key",
+                "value": "",
+                "type": "query",
+                "description": "Your Stats Perform API key."
+              },
+              {
+                "name": "date",
+                "value": "",
+                "type": "query",
+                "description": "Date for which to retrieve scores (YYYYMMDD format)."
+              }
+            ]
+          },
+          "docs": "Returns scores for multiple events on a given date or for the current day, supporting all configured leagues."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Teams",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Teams",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.stats.com/v1/stats/:sport/:leaguePath/teams/",
+            "params": [
+              {
+                "name": "sport",
+                "value": "",
+                "type": "path",
+                "description": "The sport category."
+              },
+              {
+                "name": "leaguePath",
+                "value": "",
+                "type": "path",
+                "description": "The league path identifier (e.g., nfl, mlb, nba, nhl, epl, pga, atp)."
+              },
+              {
+                "name": "api_key",
+                "value": "",
+                "type": "query",
+                "description": "Your Stats Perform API key."
+              }
+            ]
+          },
+          "docs": "Returns a list of all teams in a league including team IDs, names, abbreviations, and conference/division information."
+        },
+        {
+          "info": {
+            "name": "Get Team",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.stats.com/v1/stats/:sport/:leaguePath/teams/:teamId",
+            "params": [
+              {
+                "name": "sport",
+                "value": "",
+                "type": "path",
+                "description": "The sport category."
+              },
+              {
+                "name": "leaguePath",
+                "value": "",
+                "type": "path",
+                "description": "The league path identifier (e.g., nfl, mlb, nba, nhl, epl, pga, atp)."
+              },
+              {
+                "name": "teamId",
+                "value": "",
+                "type": "path",
+                "description": "The unique team identifier."
+              },
+              {
+                "name": "api_key",
+                "value": "",
+                "type": "query",
+                "description": "Your Stats Perform API key."
+              }
+            ]
+          },
+          "docs": "Returns detailed information about a specific team including roster, season statistics, and team metadata."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Statistics",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Team Statistics",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.stats.com/v1/stats/:sport/:leaguePath/teams/:teamId/stats",
+            "params": [
+              {
+                "name": "sport",
+                "value": "",
+                "type": "path",
+                "description": "The sport category."
+              },
+              {
+                "name": "leaguePath",
+                "value": "",
+                "type": "path",
+                "description": "The league path identifier (e.g., nfl, mlb, nba, nhl, epl, pga, atp)."
+              },
+              {
+                "name": "teamId",
+                "value": "",
+                "type": "path",
+                "description": "The unique team identifier."
+              },
+              {
+                "name": "api_key",
+                "value": "",
+                "type": "query",
+                "description": "Your Stats Perform API key."
+              },
+              {
+                "name": "season",
+                "value": "",
+                "type": "query",
+                "description": "Season year (e.g., 2025). Defaults to current season."
+              }
+            ]
+          },
+          "docs": "Returns cumulative season statistics for a specific team."
+        },
+        {
+          "info": {
+            "name": "Get Player Statistics",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.stats.com/v1/stats/:sport/:leaguePath/players/:playerId/stats",
+            "params": [
+              {
+                "name": "sport",
+                "value": "",
+                "type": "path",
+                "description": "The sport category."
+              },
+              {
+                "name": "leaguePath",
+                "value": "",
+                "type": "path",
+                "description": "The league path identifier (e.g., nfl, mlb, nba, nhl, epl, pga, atp)."
+              },
+              {
+                "name": "playerId",
+                "value": "",
+                "type": "path",
+                "description": "The unique player identifier."
+              },
+              {
+                "name": "api_key",
+                "value": "",
+                "type": "query",
+                "description": "Your Stats Perform API key."
+              },
+              {
+                "name": "season",
+                "value": "",
+                "type": "query",
+                "description": "Season year (e.g., 2025). Defaults to current season."
+              }
+            ]
+          },
+          "docs": "Returns cumulative season statistics for a specific player."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Players",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Player",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.stats.com/v1/stats/:sport/:leaguePath/players/:playerId",
+            "params": [
+              {
+                "name": "sport",
+                "value": "",
+                "type": "path",
+                "description": "The sport category."
+              },
+              {
+                "name": "leaguePath",
+                "value": "",
+                "type": "path",
+                "description": "The league path identifier (e.g., nfl, mlb, nba, nhl, epl, pga, atp)."
+              },
+              {
+                "name": "playerId",
+                "value": "",
+                "type": "path",
+                "description": "The unique player identifier."
+              },
+              {
+                "name": "api_key",
+                "value": "",
+                "type": "query",
+                "description": "Your Stats Perform API key."
+              }
+            ]
+          },
+          "docs": "Returns detailed information about a specific player including profile, career information, and current season statistics."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Standings",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Standings",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.stats.com/v1/stats/:sport/:leaguePath/standings/",
+            "params": [
+              {
+                "name": "sport",
+                "value": "",
+                "type": "path",
+                "description": "The sport category."
+              },
+              {
+                "name": "leaguePath",
+                "value": "",
+                "type": "path",
+                "description": "The league path identifier (e.g., nfl, mlb, nba, nhl, epl, pga, atp)."
+              },
+              {
+                "name": "api_key",
+                "value": "",
+                "type": "query",
+                "description": "Your Stats Perform API key."
+              },
+              {
+                "name": "season",
+                "value": "",
+                "type": "query",
+                "description": "Season year (e.g., 2025). Defaults to current season."
+              }
+            ]
+          },
+          "docs": "Returns league and conference standings with win/loss records, points, and tiebreaker information."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Editorial",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List News",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.stats.com/v1/editorial/:sport/:leaguePath/news/",
+            "params": [
+              {
+                "name": "sport",
+                "value": "",
+                "type": "path",
+                "description": "The sport category."
+              },
+              {
+                "name": "leaguePath",
+                "value": "",
+                "type": "path",
+                "description": "The league path identifier (e.g., nfl, mlb, nba, nhl, epl, pga, atp)."
+              },
+              {
+                "name": "api_key",
+                "value": "",
+                "type": "query",
+                "description": "Your Stats Perform API key."
+              },
+              {
+                "name": "count",
+                "value": "",
+                "type": "query",
+                "description": "Number of articles to return."
+              }
+            ]
+          },
+          "docs": "Returns editorial news articles, previews, and recaps for a specific sport and league."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Reference Data",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Decode Network Types",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.stats.com/v1/decode/networkTypes/",
+            "params": [
+              {
+                "name": "api_key",
+                "value": "",
+                "type": "query",
+                "description": "Your Stats Perform API key."
+              }
+            ]
+          },
+          "docs": "Returns the reference decode table for network type identifiers used in API responses. Path segments are case-sensitive."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
