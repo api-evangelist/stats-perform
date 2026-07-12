@@ -1,0 +1,17 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/stats-perform-stats-api-openapi.yml
+summary:
+  types:
+  - apiKey
+  api_key_in:
+  - query
+schemes:
+- name: statsApiKey
+  type: apiKey
+  in: query
+  parameter: api_key
+  description: API key assigned by Stats Perform. An API secret is also assigned for HMAC request
+    signing.
+  sources:
+  - openapi/stats-perform-stats-api-openapi.yml
