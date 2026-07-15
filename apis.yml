@@ -57,6 +57,8 @@ apis:
         email: help@support.statsperform.com
         url: https://developer.stats.com/
 common:
+  - type: AgenticAccess
+    url: agentic-access/stats-perform-agentic-access.yml
   - type: DomainSecurity
     url: security/stats-perform-domain-security.yml
   - type: Authentication

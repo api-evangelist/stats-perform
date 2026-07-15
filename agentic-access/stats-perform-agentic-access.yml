@@ -1,0 +1,134 @@
+generated: '2026-07-15'
+method: generated
+source: openapi/stats-perform-stats-api-openapi.yml
+description: Recommended x-agentic-access execution contracts, classified heuristically from
+  the OpenAPI. A governance starting point for exposing this API to AI agents — review and bind
+  audience per deployment. See research/curity/agentic-governance/.
+summary:
+  operations: 12
+  by_action_class:
+    connected: 12
+  by_consequence:
+    read: 12
+  human_in_the_loop_required: 0
+operations:
+- path: /stats/{sport}/{leaguePath}/scores/{eventId}
+  method: get
+  operationId: getEventScore
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /stats/{sport}/{leaguePath}/box/{eventId}
+  method: get
+  operationId: getEventBoxScore
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /stats/{sport}/{leaguePath}/playbyplay/{eventId}
+  method: get
+  operationId: getEventPlayByPlay
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /stats/{sport}/{leaguePath}/teams/
+  method: get
+  operationId: listTeams
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /stats/{sport}/{leaguePath}/teams/{teamId}
+  method: get
+  operationId: getTeam
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /stats/{sport}/{leaguePath}/teams/{teamId}/stats
+  method: get
+  operationId: getTeamStats
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /stats/{sport}/{leaguePath}/players/{playerId}
+  method: get
+  operationId: getPlayer
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /stats/{sport}/{leaguePath}/players/{playerId}/stats
+  method: get
+  operationId: getPlayerStats
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /stats/{sport}/{leaguePath}/standings/
+  method: get
+  operationId: getStandings
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /stats/{sport}/{leaguePath}/scores/
+  method: get
+  operationId: listScores
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /editorial/{sport}/{leaguePath}/news/
+  method: get
+  operationId: listNews
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /decode/networkTypes/
+  method: get
+  operationId: decodeNetworkTypes
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
