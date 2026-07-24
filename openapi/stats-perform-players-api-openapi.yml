@@ -1,0 +1,139 @@
+openapi: 3.1.0
+info:
+  title: Stats Perform STATS Editorial Players API
+  description: The STATS API from Stats Perform provides a comprehensive REST interface for accessing sports data across American Football (NFL, NCAAF), Baseball (MLB, MiLB), Basketball (NBA, NCAAB), Hockey (NHL), Soccer (MLS, EPL, Champions League), Golf (PGA), and Tennis (ATP, WTA). The API provides live scores, box scores, standings, schedules, player and team statistics, play-by-play data, editorial content, photos, and historical records. Authentication requires an API key and a secret for HMAC signing.
+  version: 1.0.0
+  contact:
+    name: Stats Perform Support
+    email: help@support.statsperform.com
+    url: https://developer.stats.com/
+  termsOfService: https://www.statsperform.com/
+servers:
+- url: https://api.stats.com/v1
+  description: Stats Perform STATS API
+security:
+- statsApiKey: []
+tags:
+- name: Players
+  description: Access player profiles, career statistics, and game-level performance data.
+paths:
+  /stats/{sport}/{leaguePath}/players/{playerId}:
+    get:
+      operationId: getPlayer
+      summary: Get Player
+      description: Returns detailed information about a specific player including profile, career information, and current season statistics.
+      tags:
+      - Players
+      parameters:
+      - $ref: '#/components/parameters/SportParam'
+      - $ref: '#/components/parameters/LeaguePathParam'
+      - name: playerId
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The unique player identifier.
+      - $ref: '#/components/parameters/ApiKeyParam'
+      responses:
+        '200':
+          description: Player profile and statistics
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Player'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+components:
+  parameters:
+    LeaguePathParam:
+      name: leaguePath
+      in: path
+      required: true
+      schema:
+        type: string
+      description: The league path identifier (e.g., nfl, mlb, nba, nhl, epl, pga, atp).
+    ApiKeyParam:
+      name: api_key
+      in: query
+      required: true
+      schema:
+        type: string
+      description: Your Stats Perform API key.
+    SportParam:
+      name: sport
+      in: path
+      required: true
+      schema:
+        type: string
+        enum:
+        - football
+        - baseball
+        - basketball
+        - hockey
+        - soccer
+        - golf
+        - tennis
+      description: The sport category.
+  responses:
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+    Unauthorized:
+      description: Missing or invalid API key
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+  schemas:
+    Player:
+      type: object
+      description: A sports player.
+      properties:
+        playerId:
+          type: string
+          description: Unique player identifier.
+        firstName:
+          type: string
+          description: Player first name.
+        lastName:
+          type: string
+          description: Player last name.
+        position:
+          type: string
+          description: Player position.
+        teamId:
+          type: string
+          description: Current team identifier.
+        jerseyNumber:
+          type: string
+          description: Jersey number.
+        birthDate:
+          type: string
+          format: date
+          description: Player birth date.
+        birthCity:
+          type: string
+          description: Player birth city.
+        birthCountry:
+          type: string
+          description: Player birth country.
+  securitySchemes:
+    statsApiKey:
+      type: apiKey
+      in: query
+      name: api_key
+      description: API key assigned by Stats Perform. An API secret is also assigned for HMAC request signing.
+externalDocs:
+  description: STATS API Developer Portal
+  url: https://developer.stats.com/docs/get_started

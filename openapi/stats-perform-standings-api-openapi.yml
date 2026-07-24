@@ -1,0 +1,141 @@
+openapi: 3.1.0
+info:
+  title: Stats Perform STATS Editorial Standings API
+  description: The STATS API from Stats Perform provides a comprehensive REST interface for accessing sports data across American Football (NFL, NCAAF), Baseball (MLB, MiLB), Basketball (NBA, NCAAB), Hockey (NHL), Soccer (MLS, EPL, Champions League), Golf (PGA), and Tennis (ATP, WTA). The API provides live scores, box scores, standings, schedules, player and team statistics, play-by-play data, editorial content, photos, and historical records. Authentication requires an API key and a secret for HMAC signing.
+  version: 1.0.0
+  contact:
+    name: Stats Perform Support
+    email: help@support.statsperform.com
+    url: https://developer.stats.com/
+  termsOfService: https://www.statsperform.com/
+servers:
+- url: https://api.stats.com/v1
+  description: Stats Perform STATS API
+security:
+- statsApiKey: []
+tags:
+- name: Standings
+  description: Retrieve league and conference standings with win/loss records and tiebreaker data.
+paths:
+  /stats/{sport}/{leaguePath}/standings/:
+    get:
+      operationId: getStandings
+      summary: Get Standings
+      description: Returns league and conference standings with win/loss records, points, and tiebreaker information.
+      tags:
+      - Standings
+      parameters:
+      - $ref: '#/components/parameters/SportParam'
+      - $ref: '#/components/parameters/LeaguePathParam'
+      - $ref: '#/components/parameters/ApiKeyParam'
+      - $ref: '#/components/parameters/SeasonParam'
+      responses:
+        '200':
+          description: League standings
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Standings'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+components:
+  parameters:
+    LeaguePathParam:
+      name: leaguePath
+      in: path
+      required: true
+      schema:
+        type: string
+      description: The league path identifier (e.g., nfl, mlb, nba, nhl, epl, pga, atp).
+    SeasonParam:
+      name: season
+      in: query
+      required: false
+      schema:
+        type: string
+      description: Season year (e.g., 2025). Defaults to current season.
+    ApiKeyParam:
+      name: api_key
+      in: query
+      required: true
+      schema:
+        type: string
+      description: Your Stats Perform API key.
+    SportParam:
+      name: sport
+      in: path
+      required: true
+      schema:
+        type: string
+        enum:
+        - football
+        - baseball
+        - basketball
+        - hockey
+        - soccer
+        - golf
+        - tennis
+      description: The sport category.
+  schemas:
+    Standings:
+      type: object
+      description: League standings.
+      properties:
+        league:
+          type: string
+          description: League identifier.
+        season:
+          type: string
+          description: Season year.
+        conferences:
+          type: array
+          items:
+            type: object
+            properties:
+              conferenceName:
+                type: string
+              divisions:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    divisionName:
+                      type: string
+                    teams:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          teamId:
+                            type: string
+                          name:
+                            type: string
+                          wins:
+                            type: integer
+                          losses:
+                            type: integer
+                          ties:
+                            type: integer
+                          points:
+                            type: integer
+                          winPct:
+                            type: number
+  responses:
+    Unauthorized:
+      description: Missing or invalid API key
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+  securitySchemes:
+    statsApiKey:
+      type: apiKey
+      in: query
+      name: api_key
+      description: API key assigned by Stats Perform. An API secret is also assigned for HMAC request signing.
+externalDocs:
+  description: STATS API Developer Portal
+  url: https://developer.stats.com/docs/get_started

@@ -1,0 +1,168 @@
+openapi: 3.1.0
+info:
+  title: Stats Perform STATS Editorial Statistics API
+  description: The STATS API from Stats Perform provides a comprehensive REST interface for accessing sports data across American Football (NFL, NCAAF), Baseball (MLB, MiLB), Basketball (NBA, NCAAB), Hockey (NHL), Soccer (MLS, EPL, Champions League), Golf (PGA), and Tennis (ATP, WTA). The API provides live scores, box scores, standings, schedules, player and team statistics, play-by-play data, editorial content, photos, and historical records. Authentication requires an API key and a secret for HMAC signing.
+  version: 1.0.0
+  contact:
+    name: Stats Perform Support
+    email: help@support.statsperform.com
+    url: https://developer.stats.com/
+  termsOfService: https://www.statsperform.com/
+servers:
+- url: https://api.stats.com/v1
+  description: Stats Perform STATS API
+security:
+- statsApiKey: []
+tags:
+- name: Statistics
+  description: Access cumulative season statistics for teams and players across all supported sports.
+paths:
+  /stats/{sport}/{leaguePath}/teams/{teamId}/stats:
+    get:
+      operationId: getTeamStats
+      summary: Get Team Statistics
+      description: Returns cumulative season statistics for a specific team.
+      tags:
+      - Statistics
+      parameters:
+      - $ref: '#/components/parameters/SportParam'
+      - $ref: '#/components/parameters/LeaguePathParam'
+      - name: teamId
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The unique team identifier.
+      - $ref: '#/components/parameters/ApiKeyParam'
+      - $ref: '#/components/parameters/SeasonParam'
+      responses:
+        '200':
+          description: Team season statistics
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TeamStats'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /stats/{sport}/{leaguePath}/players/{playerId}/stats:
+    get:
+      operationId: getPlayerStats
+      summary: Get Player Statistics
+      description: Returns cumulative season statistics for a specific player.
+      tags:
+      - Statistics
+      parameters:
+      - $ref: '#/components/parameters/SportParam'
+      - $ref: '#/components/parameters/LeaguePathParam'
+      - name: playerId
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The unique player identifier.
+      - $ref: '#/components/parameters/ApiKeyParam'
+      - $ref: '#/components/parameters/SeasonParam'
+      responses:
+        '200':
+          description: Player season statistics
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PlayerStats'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+components:
+  schemas:
+    TeamStats:
+      type: object
+      description: Cumulative season statistics for a team.
+      properties:
+        teamId:
+          type: string
+        season:
+          type: string
+        stats:
+          type: object
+          additionalProperties: true
+          description: Sport-specific statistical fields.
+    PlayerStats:
+      type: object
+      description: Cumulative season statistics for a player.
+      properties:
+        playerId:
+          type: string
+        season:
+          type: string
+        stats:
+          type: object
+          additionalProperties: true
+          description: Sport-specific statistical fields.
+  parameters:
+    LeaguePathParam:
+      name: leaguePath
+      in: path
+      required: true
+      schema:
+        type: string
+      description: The league path identifier (e.g., nfl, mlb, nba, nhl, epl, pga, atp).
+    SeasonParam:
+      name: season
+      in: query
+      required: false
+      schema:
+        type: string
+      description: Season year (e.g., 2025). Defaults to current season.
+    ApiKeyParam:
+      name: api_key
+      in: query
+      required: true
+      schema:
+        type: string
+      description: Your Stats Perform API key.
+    SportParam:
+      name: sport
+      in: path
+      required: true
+      schema:
+        type: string
+        enum:
+        - football
+        - baseball
+        - basketball
+        - hockey
+        - soccer
+        - golf
+        - tennis
+      description: The sport category.
+  responses:
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+    Unauthorized:
+      description: Missing or invalid API key
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+  securitySchemes:
+    statsApiKey:
+      type: apiKey
+      in: query
+      name: api_key
+      description: API key assigned by Stats Perform. An API secret is also assigned for HMAC request signing.
+externalDocs:
+  description: STATS API Developer Portal
+  url: https://developer.stats.com/docs/get_started

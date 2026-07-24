@@ -1,0 +1,133 @@
+openapi: 3.1.0
+info:
+  title: Stats Perform STATS Editorial API
+  description: The STATS API from Stats Perform provides a comprehensive REST interface for accessing sports data across American Football (NFL, NCAAF), Baseball (MLB, MiLB), Basketball (NBA, NCAAB), Hockey (NHL), Soccer (MLS, EPL, Champions League), Golf (PGA), and Tennis (ATP, WTA). The API provides live scores, box scores, standings, schedules, player and team statistics, play-by-play data, editorial content, photos, and historical records. Authentication requires an API key and a secret for HMAC signing.
+  version: 1.0.0
+  contact:
+    name: Stats Perform Support
+    email: help@support.statsperform.com
+    url: https://developer.stats.com/
+  termsOfService: https://www.statsperform.com/
+servers:
+- url: https://api.stats.com/v1
+  description: Stats Perform STATS API
+security:
+- statsApiKey: []
+tags:
+- name: Editorial
+  description: Retrieve editorial content including news articles, previews, and recaps associated with events, teams, and players.
+paths:
+  /editorial/{sport}/{leaguePath}/news/:
+    get:
+      operationId: listNews
+      summary: List News
+      description: Returns editorial news articles, previews, and recaps for a specific sport and league.
+      tags:
+      - Editorial
+      parameters:
+      - $ref: '#/components/parameters/SportParam'
+      - $ref: '#/components/parameters/LeaguePathParam'
+      - $ref: '#/components/parameters/ApiKeyParam'
+      - name: count
+        in: query
+        required: false
+        schema:
+          type: integer
+          minimum: 1
+          maximum: 50
+        description: Number of articles to return.
+      responses:
+        '200':
+          description: List of news articles
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  apiResults:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Article'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+components:
+  parameters:
+    LeaguePathParam:
+      name: leaguePath
+      in: path
+      required: true
+      schema:
+        type: string
+      description: The league path identifier (e.g., nfl, mlb, nba, nhl, epl, pga, atp).
+    ApiKeyParam:
+      name: api_key
+      in: query
+      required: true
+      schema:
+        type: string
+      description: Your Stats Perform API key.
+    SportParam:
+      name: sport
+      in: path
+      required: true
+      schema:
+        type: string
+        enum:
+        - football
+        - baseball
+        - basketball
+        - hockey
+        - soccer
+        - golf
+        - tennis
+      description: The sport category.
+  responses:
+    Unauthorized:
+      description: Missing or invalid API key
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+  schemas:
+    Article:
+      type: object
+      description: An editorial article.
+      properties:
+        articleId:
+          type: string
+          description: Unique article identifier.
+        headline:
+          type: string
+          description: Article headline.
+        subHeadline:
+          type: string
+          description: Article sub-headline.
+        publishedAt:
+          type: string
+          format: date-time
+          description: Publication timestamp.
+        sport:
+          type: string
+          description: Associated sport.
+        league:
+          type: string
+          description: Associated league.
+        body:
+          type: string
+          description: Article body text.
+        imageUrl:
+          type: string
+          format: uri
+          description: Associated image URL.
+  securitySchemes:
+    statsApiKey:
+      type: apiKey
+      in: query
+      name: api_key
+      description: API key assigned by Stats Perform. An API secret is also assigned for HMAC request signing.
+externalDocs:
+  description: STATS API Developer Portal
+  url: https://developer.stats.com/docs/get_started

@@ -1,0 +1,158 @@
+openapi: 3.1.0
+info:
+  title: Stats Perform STATS Editorial Teams API
+  description: The STATS API from Stats Perform provides a comprehensive REST interface for accessing sports data across American Football (NFL, NCAAF), Baseball (MLB, MiLB), Basketball (NBA, NCAAB), Hockey (NHL), Soccer (MLS, EPL, Champions League), Golf (PGA), and Tennis (ATP, WTA). The API provides live scores, box scores, standings, schedules, player and team statistics, play-by-play data, editorial content, photos, and historical records. Authentication requires an API key and a secret for HMAC signing.
+  version: 1.0.0
+  contact:
+    name: Stats Perform Support
+    email: help@support.statsperform.com
+    url: https://developer.stats.com/
+  termsOfService: https://www.statsperform.com/
+servers:
+- url: https://api.stats.com/v1
+  description: Stats Perform STATS API
+security:
+- statsApiKey: []
+tags:
+- name: Teams
+  description: Retrieve team rosters, statistics, and metadata for all supported sports and leagues.
+paths:
+  /stats/{sport}/{leaguePath}/teams/:
+    get:
+      operationId: listTeams
+      summary: List Teams
+      description: Returns a list of all teams in a league including team IDs, names, abbreviations, and conference/division information.
+      tags:
+      - Teams
+      parameters:
+      - $ref: '#/components/parameters/SportParam'
+      - $ref: '#/components/parameters/LeaguePathParam'
+      - $ref: '#/components/parameters/ApiKeyParam'
+      responses:
+        '200':
+          description: List of teams
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  apiResults:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Team'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /stats/{sport}/{leaguePath}/teams/{teamId}:
+    get:
+      operationId: getTeam
+      summary: Get Team
+      description: Returns detailed information about a specific team including roster, season statistics, and team metadata.
+      tags:
+      - Teams
+      parameters:
+      - $ref: '#/components/parameters/SportParam'
+      - $ref: '#/components/parameters/LeaguePathParam'
+      - name: teamId
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The unique team identifier.
+      - $ref: '#/components/parameters/ApiKeyParam'
+      responses:
+        '200':
+          description: Team details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Team'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+components:
+  parameters:
+    LeaguePathParam:
+      name: leaguePath
+      in: path
+      required: true
+      schema:
+        type: string
+      description: The league path identifier (e.g., nfl, mlb, nba, nhl, epl, pga, atp).
+    ApiKeyParam:
+      name: api_key
+      in: query
+      required: true
+      schema:
+        type: string
+      description: Your Stats Perform API key.
+    SportParam:
+      name: sport
+      in: path
+      required: true
+      schema:
+        type: string
+        enum:
+        - football
+        - baseball
+        - basketball
+        - hockey
+        - soccer
+        - golf
+        - tennis
+      description: The sport category.
+  schemas:
+    Team:
+      type: object
+      description: A sports team.
+      properties:
+        teamId:
+          type: string
+          description: Unique team identifier.
+        name:
+          type: string
+          description: Full team name.
+        abbreviation:
+          type: string
+          description: Team abbreviation.
+        city:
+          type: string
+          description: Team city.
+        conference:
+          type: string
+          description: Conference the team belongs to.
+        division:
+          type: string
+          description: Division the team belongs to.
+        logoUrl:
+          type: string
+          format: uri
+          description: URL to the team logo.
+  responses:
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+    Unauthorized:
+      description: Missing or invalid API key
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+  securitySchemes:
+    statsApiKey:
+      type: apiKey
+      in: query
+      name: api_key
+      description: API key assigned by Stats Perform. An API secret is also assigned for HMAC request signing.
+externalDocs:
+  description: STATS API Developer Portal
+  url: https://developer.stats.com/docs/get_started
