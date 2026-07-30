@@ -7,9 +7,22 @@ description: >-
   Hockey, Soccer, Golf, Tennis, and more with in-depth player and team statistics, editorial coverage, live scores,
   standings, schedules, and play-by-play data.
 type: Index
+accessModel:
+  pricing: freemium
+  onboarding: self-serve
+  trial: false
+  try_now: true
+  public: false
+  label: Freemium · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
 position: Consumer
 access: 3rd-Party
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/stats-perform.png
 tags:
   - Sports
   - Sports Data
@@ -28,34 +41,96 @@ modified: '2026-05-19'
 url: https://raw.githubusercontent.com/api-evangelist/stats-perform/refs/heads/main/apis.yml
 specificationVersion: '0.19'
 apis:
-  - aid: stats-perform:stats-api
-    name: STATS API
-    description: >-
-      The STATS API from Stats Perform provides a comprehensive REST interface for accessing sports data including live
-      scores, box scores, standings, schedules, player and team statistics, play-by-play data, editorial content, and
-      historical records. The API supports sports including American Football (NFL, NCAAF), Baseball (MLB, MiLB),
-      Basketball (NBA, NCAAB), Hockey (NHL), Soccer (MLS, EPL, Champions League), Golf (PGA), and Tennis (ATP, WTA).
-      Authentication requires an API key and secret.
-    humanURL: https://developer.stats.com/
-    baseURL: https://api.stats.com/v1
-    tags:
-      - Sports Data
-      - Live Scores
-      - Statistics
-      - Football
-      - Baseball
-      - Basketball
-      - Hockey
-      - Soccer
-    properties:
-      - type: Documentation
-        url: https://developer.stats.com/docs/get_started
-      - type: OpenAPI
-        url: openapi/stats-perform-stats-api-openapi.yml
-    contact:
-      - FN: Stats Perform Support
-        email: help@support.statsperform.com
-        url: https://developer.stats.com/
+- aid: stats-perform:stats-perform-editorial-api
+  name: Stats Perform Editorial API
+  description: >-
+    Retrieve editorial content including news articles, previews, and recaps associated with events, teams,
+    and players.
+  humanURL: https://developer.stats.com/
+  baseURL: https://api.stats.com/v1
+  tags:
+  - Editorial
+  properties:
+  - type: OpenAPI
+    url: openapi/stats-perform-editorial-api-openapi.yml
+  - type: Documentation
+    url: https://developer.stats.com/docs/get_started
+- aid: stats-perform:stats-perform-events-api
+  name: Stats Perform Events API
+  description: >-
+    Access event (game/match) data including live scores, box scores, play-by-play, and results across
+    all supported sports.
+  humanURL: https://developer.stats.com/
+  baseURL: https://api.stats.com/v1
+  tags:
+  - Events
+  properties:
+  - type: OpenAPI
+    url: openapi/stats-perform-events-api-openapi.yml
+  - type: Documentation
+    url: https://developer.stats.com/docs/get_started
+- aid: stats-perform:stats-perform-players-api
+  name: Stats Perform Players API
+  description: Access player profiles, career statistics, and game-level performance data.
+  humanURL: https://developer.stats.com/
+  baseURL: https://api.stats.com/v1
+  tags:
+  - Players
+  properties:
+  - type: OpenAPI
+    url: openapi/stats-perform-players-api-openapi.yml
+  - type: Documentation
+    url: https://developer.stats.com/docs/get_started
+- aid: stats-perform:stats-perform-reference-data-api
+  name: Stats Perform Reference Data API
+  description: >-
+    Access reference data including league definitions, network types, and decode tables for API response
+    values.
+  humanURL: https://developer.stats.com/
+  baseURL: https://api.stats.com/v1
+  tags:
+  - Reference Data
+  properties:
+  - type: OpenAPI
+    url: openapi/stats-perform-reference-data-api-openapi.yml
+  - type: Documentation
+    url: https://developer.stats.com/docs/get_started
+- aid: stats-perform:stats-perform-standings-api
+  name: Stats Perform Standings API
+  description: Retrieve league and conference standings with win/loss records and tiebreaker data.
+  humanURL: https://developer.stats.com/
+  baseURL: https://api.stats.com/v1
+  tags:
+  - Standings
+  properties:
+  - type: OpenAPI
+    url: openapi/stats-perform-standings-api-openapi.yml
+  - type: Documentation
+    url: https://developer.stats.com/docs/get_started
+- aid: stats-perform:stats-perform-statistics-api
+  name: Stats Perform Statistics API
+  description: Access cumulative season statistics for teams and players across all supported sports.
+  humanURL: https://developer.stats.com/
+  baseURL: https://api.stats.com/v1
+  tags:
+  - Statistics
+  properties:
+  - type: OpenAPI
+    url: openapi/stats-perform-statistics-api-openapi.yml
+  - type: Documentation
+    url: https://developer.stats.com/docs/get_started
+- aid: stats-perform:stats-perform-teams-api
+  name: Stats Perform Teams API
+  description: Retrieve team rosters, statistics, and metadata for all supported sports and leagues.
+  humanURL: https://developer.stats.com/
+  baseURL: https://api.stats.com/v1
+  tags:
+  - Teams
+  properties:
+  - type: OpenAPI
+    url: openapi/stats-perform-teams-api-openapi.yml
+  - type: Documentation
+    url: https://developer.stats.com/docs/get_started
 common:
   - type: AgenticAccess
     url: agentic-access/stats-perform-agentic-access.yml
