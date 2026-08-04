@@ -1,0 +1,26 @@
+{
+  "provider": "stats-perform",
+  "sources": [
+    "stats-perform-editorial-api-openapi.yml",
+    "stats-perform-events-api-openapi.yml",
+    "stats-perform-players-api-openapi.yml",
+    "stats-perform-reference-data-api-openapi.yml",
+    "stats-perform-standings-api-openapi.yml",
+    "stats-perform-statistics-api-openapi.yml",
+    "stats-perform-teams-api-openapi.yml"
+  ],
+  "outputs": [
+    "stats-perform-editorial-api-openapi.yml",
+    "stats-perform-events-api-openapi.yml",
+    "stats-perform-players-api-openapi.yml",
+    "stats-perform-reference-data-api-openapi.yml",
+    "stats-perform-standings-api-openapi.yml",
+    "stats-perform-statistics-api-openapi.yml",
+    "stats-perform-teams-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
