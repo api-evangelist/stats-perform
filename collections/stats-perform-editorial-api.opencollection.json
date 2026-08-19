@@ -1,0 +1,63 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Stats Perform STATS Editorial API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "api_key",
+      "value": "{{api_key}}",
+      "placement": "query"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Editorial",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List News",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.stats.com/v1/editorial/:sport/:leaguePath/news/",
+            "params": [
+              {
+                "name": "sport",
+                "value": "",
+                "type": "path",
+                "description": "The sport category."
+              },
+              {
+                "name": "leaguePath",
+                "value": "",
+                "type": "path",
+                "description": "The league path identifier (e.g., nfl, mlb, nba, nhl, epl, pga, atp)."
+              },
+              {
+                "name": "api_key",
+                "value": "",
+                "type": "query",
+                "description": "Your Stats Perform API key."
+              },
+              {
+                "name": "count",
+                "value": "",
+                "type": "query",
+                "description": "Number of articles to return."
+              }
+            ]
+          },
+          "docs": "Returns editorial news articles, previews, and recaps for a specific sport and league."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

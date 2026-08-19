@@ -1,0 +1,63 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Stats Perform STATS Editorial Players API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "api_key",
+      "value": "{{api_key}}",
+      "placement": "query"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Players",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Player",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.stats.com/v1/stats/:sport/:leaguePath/players/:playerId",
+            "params": [
+              {
+                "name": "sport",
+                "value": "",
+                "type": "path",
+                "description": "The sport category."
+              },
+              {
+                "name": "leaguePath",
+                "value": "",
+                "type": "path",
+                "description": "The league path identifier (e.g., nfl, mlb, nba, nhl, epl, pga, atp)."
+              },
+              {
+                "name": "playerId",
+                "value": "",
+                "type": "path",
+                "description": "The unique player identifier."
+              },
+              {
+                "name": "api_key",
+                "value": "",
+                "type": "query",
+                "description": "Your Stats Perform API key."
+              }
+            ]
+          },
+          "docs": "Returns detailed information about a specific player including profile, career information, and current season statistics."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

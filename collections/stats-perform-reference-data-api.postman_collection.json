@@ -1,0 +1,185 @@
+{
+  "item": [
+    {
+      "id": "446037ae-9086-482f-8e25-234a3dc100ab",
+      "name": "Reference Data",
+      "description": {
+        "content": "Access reference data including league definitions, network types, and decode tables for API response values.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "15512e49-ccaa-4921-9222-5b4ab3c5717b",
+          "name": "Decode Network Types",
+          "request": {
+            "name": "Decode Network Types",
+            "description": {
+              "content": "Returns the reference decode table for network type identifiers used in API responses. Path segments are case-sensitive.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "decode",
+                "networkTypes",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "api_key",
+                  "value": "<string>",
+                  "description": "(Required) Your Stats Perform API key."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "dc31bc81-dbf6-482c-9500-1c926a606600",
+              "name": "Network type decode table",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "decode",
+                    "networkTypes",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "api_key",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "api_key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"apiResults\": [\n    {\n      \"networkTypeId\": 9298,\n      \"name\": \"string\"\n    },\n    {\n      \"networkTypeId\": 7210,\n      \"name\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e38a9eec-9db9-40a1-bd56-d6df4b7173d9",
+              "name": "Missing or invalid API key",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "decode",
+                    "networkTypes",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "api_key",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "api_key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.stats.com/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "api_key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "query"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "204cf74e-527f-4f2c-b340-a92411607d8d",
+    "name": "Stats Perform STATS Editorial Reference Data API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The STATS API from Stats Perform provides a comprehensive REST interface for accessing sports data across American Football (NFL, NCAAF), Baseball (MLB, MiLB), Basketball (NBA, NCAAB), Hockey (NHL), Soccer (MLS, EPL, Champions League), Golf (PGA), and Tennis (ATP, WTA). The API provides live scores, box scores, standings, schedules, player and team statistics, play-by-play data, editorial content, photos, and historical records. Authentication requires an API key and a secret for HMAC signing.\n\nContact Support:\n Name: Stats Perform Support\n Email: help@support.statsperform.com",
+      "type": "text/plain"
+    }
+  }
+}

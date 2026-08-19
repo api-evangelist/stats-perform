@@ -1,0 +1,112 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Stats Perform STATS Editorial Statistics API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "api_key",
+      "value": "{{api_key}}",
+      "placement": "query"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Statistics",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Team Statistics",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.stats.com/v1/stats/:sport/:leaguePath/teams/:teamId/stats",
+            "params": [
+              {
+                "name": "sport",
+                "value": "",
+                "type": "path",
+                "description": "The sport category."
+              },
+              {
+                "name": "leaguePath",
+                "value": "",
+                "type": "path",
+                "description": "The league path identifier (e.g., nfl, mlb, nba, nhl, epl, pga, atp)."
+              },
+              {
+                "name": "teamId",
+                "value": "",
+                "type": "path",
+                "description": "The unique team identifier."
+              },
+              {
+                "name": "api_key",
+                "value": "",
+                "type": "query",
+                "description": "Your Stats Perform API key."
+              },
+              {
+                "name": "season",
+                "value": "",
+                "type": "query",
+                "description": "Season year (e.g., 2025). Defaults to current season."
+              }
+            ]
+          },
+          "docs": "Returns cumulative season statistics for a specific team."
+        },
+        {
+          "info": {
+            "name": "Get Player Statistics",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.stats.com/v1/stats/:sport/:leaguePath/players/:playerId/stats",
+            "params": [
+              {
+                "name": "sport",
+                "value": "",
+                "type": "path",
+                "description": "The sport category."
+              },
+              {
+                "name": "leaguePath",
+                "value": "",
+                "type": "path",
+                "description": "The league path identifier (e.g., nfl, mlb, nba, nhl, epl, pga, atp)."
+              },
+              {
+                "name": "playerId",
+                "value": "",
+                "type": "path",
+                "description": "The unique player identifier."
+              },
+              {
+                "name": "api_key",
+                "value": "",
+                "type": "query",
+                "description": "Your Stats Perform API key."
+              },
+              {
+                "name": "season",
+                "value": "",
+                "type": "query",
+                "description": "Season year (e.g., 2025). Defaults to current season."
+              }
+            ]
+          },
+          "docs": "Returns cumulative season statistics for a specific player."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
