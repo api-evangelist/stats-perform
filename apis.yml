@@ -89,6 +89,8 @@ apis:
   humanURL: https://developer.stats.com/
   baseURL: https://api.stats.com/v1
   tags:
+  - Player
+  tags_raw:
   - Players
   properties:
   - type: OpenAPI
