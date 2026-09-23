@@ -1,13 +1,7 @@
 {
   "provider": "stats-perform",
   "sources": [
-    "stats-perform-editorial-api-openapi.yml",
-    "stats-perform-events-api-openapi.yml",
-    "stats-perform-players-api-openapi.yml",
-    "stats-perform-reference-data-api-openapi.yml",
-    "stats-perform-standings-api-openapi.yml",
-    "stats-perform-statistics-api-openapi.yml",
-    "stats-perform-teams-api-openapi.yml"
+    "_original/stats-perform-stats-api-openapi.yml"
   ],
   "outputs": [
     "stats-perform-editorial-api-openapi.yml",
@@ -21,6 +15,18 @@
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "stats-perform-stats-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "stats-perform-editorial-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "stats-perform-events-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "stats-perform-players-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "stats-perform-reference-data-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "stats-perform-standings-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "stats-perform-statistics-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "stats-perform-teams-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }

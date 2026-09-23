@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Stats Perform STATS Editorial Reference Data API
+  title: Stats Perform STATS Reference Data API
   description: The STATS API from Stats Perform provides a comprehensive REST interface for accessing sports data across American Football (NFL, NCAAF), Baseball (MLB, MiLB), Basketball (NBA, NCAAB), Hockey (NHL), Soccer (MLS, EPL, Champions League), Golf (PGA), and Tennis (ATP, WTA). The API provides live scores, box scores, standings, schedules, player and team statistics, play-by-play data, editorial content, photos, and historical records. Authentication requires an API key and a secret for HMAC signing.
   version: 1.0.0
   contact:
