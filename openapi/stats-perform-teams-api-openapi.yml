@@ -72,13 +72,6 @@ paths:
           $ref: '#/components/responses/NotFound'
 components:
   parameters:
-    LeaguePathParam:
-      name: leaguePath
-      in: path
-      required: true
-      schema:
-        type: string
-      description: The league path identifier (e.g., nfl, mlb, nba, nhl, epl, pga, atp).
     ApiKeyParam:
       name: api_key
       in: query
@@ -86,6 +79,13 @@ components:
       schema:
         type: string
       description: Your Stats Perform API key.
+    LeaguePathParam:
+      name: leaguePath
+      in: path
+      required: true
+      schema:
+        type: string
+      description: The league path identifier (e.g., nfl, mlb, nba, nhl, epl, pga, atp).
     SportParam:
       name: sport
       in: path
@@ -101,25 +101,6 @@ components:
         - golf
         - tennis
       description: The sport category.
-  responses:
-    Unauthorized:
-      description: Missing or invalid API key
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              message:
-                type: string
-    NotFound:
-      description: Resource not found
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              message:
-                type: string
   schemas:
     Team:
       type: object
@@ -147,6 +128,25 @@ components:
           type: string
           format: uri
           description: URL to the team logo.
+  responses:
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+    Unauthorized:
+      description: Missing or invalid API key
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
   securitySchemes:
     statsApiKey:
       type: apiKey

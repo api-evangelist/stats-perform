@@ -119,6 +119,43 @@ paths:
         '401':
           $ref: '#/components/responses/Unauthorized'
 components:
+  parameters:
+    ApiKeyParam:
+      name: api_key
+      in: query
+      required: true
+      schema:
+        type: string
+      description: Your Stats Perform API key.
+    LeaguePathParam:
+      name: leaguePath
+      in: path
+      required: true
+      schema:
+        type: string
+      description: The league path identifier (e.g., nfl, mlb, nba, nhl, epl, pga, atp).
+    SportParam:
+      name: sport
+      in: path
+      required: true
+      schema:
+        type: string
+        enum:
+        - football
+        - baseball
+        - basketball
+        - hockey
+        - soccer
+        - golf
+        - tennis
+      description: The sport category.
+    EventIdParam:
+      name: eventId
+      in: path
+      required: true
+      schema:
+        type: string
+      description: The unique event identifier.
   schemas:
     PlayByPlay:
       type: object
@@ -145,6 +182,19 @@ components:
               playerId:
                 type: string
           description: Ordered list of play events.
+    TeamRef:
+      type: object
+      description: Lightweight team reference.
+      properties:
+        teamId:
+          type: string
+          description: Team identifier.
+        name:
+          type: string
+          description: Team name.
+        abbreviation:
+          type: string
+          description: Team abbreviation.
     BoxScore:
       type: object
       description: Full box score for a sports event.
@@ -215,59 +265,9 @@ components:
               awayScore:
                 type: integer
           description: Period/quarter/inning breakdown of the score.
-    TeamRef:
-      type: object
-      description: Lightweight team reference.
-      properties:
-        teamId:
-          type: string
-          description: Team identifier.
-        name:
-          type: string
-          description: Team name.
-        abbreviation:
-          type: string
-          description: Team abbreviation.
-  parameters:
-    LeaguePathParam:
-      name: leaguePath
-      in: path
-      required: true
-      schema:
-        type: string
-      description: The league path identifier (e.g., nfl, mlb, nba, nhl, epl, pga, atp).
-    ApiKeyParam:
-      name: api_key
-      in: query
-      required: true
-      schema:
-        type: string
-      description: Your Stats Perform API key.
-    EventIdParam:
-      name: eventId
-      in: path
-      required: true
-      schema:
-        type: string
-      description: The unique event identifier.
-    SportParam:
-      name: sport
-      in: path
-      required: true
-      schema:
-        type: string
-        enum:
-        - football
-        - baseball
-        - basketball
-        - hockey
-        - soccer
-        - golf
-        - tennis
-      description: The sport category.
   responses:
-    Unauthorized:
-      description: Missing or invalid API key
+    NotFound:
+      description: Resource not found
       content:
         application/json:
           schema:
@@ -275,8 +275,8 @@ components:
             properties:
               message:
                 type: string
-    NotFound:
-      description: Resource not found
+    Unauthorized:
+      description: Missing or invalid API key
       content:
         application/json:
           schema:
