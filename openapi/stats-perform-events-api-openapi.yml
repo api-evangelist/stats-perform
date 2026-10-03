@@ -119,69 +119,43 @@ paths:
         '401':
           $ref: '#/components/responses/Unauthorized'
 components:
-  parameters:
-    ApiKeyParam:
-      name: api_key
-      in: query
-      required: true
-      schema:
-        type: string
-      description: Your Stats Perform API key.
-    LeaguePathParam:
-      name: leaguePath
-      in: path
-      required: true
-      schema:
-        type: string
-      description: The league path identifier (e.g., nfl, mlb, nba, nhl, epl, pga, atp).
-    SportParam:
-      name: sport
-      in: path
-      required: true
-      schema:
-        type: string
-        enum:
-        - football
-        - baseball
-        - basketball
-        - hockey
-        - soccer
-        - golf
-        - tennis
-      description: The sport category.
-    EventIdParam:
-      name: eventId
-      in: path
-      required: true
-      schema:
-        type: string
-      description: The unique event identifier.
   schemas:
-    PlayByPlay:
+    EventScore:
       type: object
-      description: Play-by-play data for a sports event.
+      description: Score data for a sports event.
       properties:
         eventId:
           type: string
           description: Unique event identifier.
-        plays:
+        startDateTime:
+          type: string
+          format: date-time
+          description: Event start date and time.
+        status:
+          type: string
+          description: Current event status (pre-event, in-progress, final).
+        homeTeam:
+          $ref: '#/components/schemas/TeamRef'
+        awayTeam:
+          $ref: '#/components/schemas/TeamRef'
+        homeScore:
+          type: integer
+          description: Home team score.
+        awayScore:
+          type: integer
+          description: Away team score.
+        periods:
           type: array
           items:
             type: object
             properties:
-              playId:
-                type: string
-              quarter:
+              periodNumber:
                 type: integer
-              time:
-                type: string
-              description:
-                type: string
-              teamId:
-                type: string
-              playerId:
-                type: string
-          description: Ordered list of play events.
+              homeScore:
+                type: integer
+              awayScore:
+                type: integer
+          description: Period/quarter/inning breakdown of the score.
     TeamRef:
       type: object
       description: Lightweight team reference.
@@ -229,42 +203,31 @@ components:
                 type: object
                 additionalProperties: true
           description: Individual player statistics for the event.
-    EventScore:
+    PlayByPlay:
       type: object
-      description: Score data for a sports event.
+      description: Play-by-play data for a sports event.
       properties:
         eventId:
           type: string
           description: Unique event identifier.
-        startDateTime:
-          type: string
-          format: date-time
-          description: Event start date and time.
-        status:
-          type: string
-          description: Current event status (pre-event, in-progress, final).
-        homeTeam:
-          $ref: '#/components/schemas/TeamRef'
-        awayTeam:
-          $ref: '#/components/schemas/TeamRef'
-        homeScore:
-          type: integer
-          description: Home team score.
-        awayScore:
-          type: integer
-          description: Away team score.
-        periods:
+        plays:
           type: array
           items:
             type: object
             properties:
-              periodNumber:
+              playId:
+                type: string
+              quarter:
                 type: integer
-              homeScore:
-                type: integer
-              awayScore:
-                type: integer
-          description: Period/quarter/inning breakdown of the score.
+              time:
+                type: string
+              description:
+                type: string
+              teamId:
+                type: string
+              playerId:
+                type: string
+          description: Ordered list of play events.
   responses:
     NotFound:
       description: Resource not found
@@ -284,6 +247,43 @@ components:
             properties:
               message:
                 type: string
+  parameters:
+    ApiKeyParam:
+      name: api_key
+      in: query
+      required: true
+      schema:
+        type: string
+      description: Your Stats Perform API key.
+    EventIdParam:
+      name: eventId
+      in: path
+      required: true
+      schema:
+        type: string
+      description: The unique event identifier.
+    SportParam:
+      name: sport
+      in: path
+      required: true
+      schema:
+        type: string
+        enum:
+        - football
+        - baseball
+        - basketball
+        - hockey
+        - soccer
+        - golf
+        - tennis
+      description: The sport category.
+    LeaguePathParam:
+      name: leaguePath
+      in: path
+      required: true
+      schema:
+        type: string
+      description: The league path identifier (e.g., nfl, mlb, nba, nhl, epl, pga, atp).
   securitySchemes:
     statsApiKey:
       type: apiKey

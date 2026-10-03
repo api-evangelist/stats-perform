@@ -77,18 +77,6 @@ paths:
           $ref: '#/components/responses/NotFound'
 components:
   schemas:
-    PlayerStats:
-      type: object
-      description: Cumulative season statistics for a player.
-      properties:
-        playerId:
-          type: string
-        season:
-          type: string
-        stats:
-          type: object
-          additionalProperties: true
-          description: Sport-specific statistical fields.
     TeamStats:
       type: object
       description: Cumulative season statistics for a team.
@@ -101,6 +89,37 @@ components:
           type: object
           additionalProperties: true
           description: Sport-specific statistical fields.
+    PlayerStats:
+      type: object
+      description: Cumulative season statistics for a player.
+      properties:
+        playerId:
+          type: string
+        season:
+          type: string
+        stats:
+          type: object
+          additionalProperties: true
+          description: Sport-specific statistical fields.
+  responses:
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+    Unauthorized:
+      description: Missing or invalid API key
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
   parameters:
     ApiKeyParam:
       name: api_key
@@ -109,13 +128,6 @@ components:
       schema:
         type: string
       description: Your Stats Perform API key.
-    LeaguePathParam:
-      name: leaguePath
-      in: path
-      required: true
-      schema:
-        type: string
-      description: The league path identifier (e.g., nfl, mlb, nba, nhl, epl, pga, atp).
     SportParam:
       name: sport
       in: path
@@ -138,25 +150,13 @@ components:
       schema:
         type: string
       description: Season year (e.g., 2025). Defaults to current season.
-  responses:
-    NotFound:
-      description: Resource not found
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              message:
-                type: string
-    Unauthorized:
-      description: Missing or invalid API key
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              message:
-                type: string
+    LeaguePathParam:
+      name: leaguePath
+      in: path
+      required: true
+      schema:
+        type: string
+      description: The league path identifier (e.g., nfl, mlb, nba, nhl, epl, pga, atp).
   securitySchemes:
     statsApiKey:
       type: apiKey
