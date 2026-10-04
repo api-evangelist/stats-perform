@@ -39,16 +39,6 @@ paths:
         '401':
           $ref: '#/components/responses/Unauthorized'
 components:
-  responses:
-    Unauthorized:
-      description: Missing or invalid API key
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              message:
-                type: string
   parameters:
     ApiKeyParam:
       name: api_key
@@ -57,6 +47,13 @@ components:
       schema:
         type: string
       description: Your Stats Perform API key.
+    SeasonParam:
+      name: season
+      in: query
+      required: false
+      schema:
+        type: string
+      description: Season year (e.g., 2025). Defaults to current season.
     SportParam:
       name: sport
       in: path
@@ -72,13 +69,6 @@ components:
         - golf
         - tennis
       description: The sport category.
-    SeasonParam:
-      name: season
-      in: query
-      required: false
-      schema:
-        type: string
-      description: Season year (e.g., 2025). Defaults to current season.
     LeaguePathParam:
       name: leaguePath
       in: path
@@ -130,6 +120,16 @@ components:
                             type: integer
                           winPct:
                             type: number
+  responses:
+    Unauthorized:
+      description: Missing or invalid API key
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
   securitySchemes:
     statsApiKey:
       type: apiKey

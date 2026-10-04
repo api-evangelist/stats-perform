@@ -46,6 +46,14 @@ paths:
         '401':
           $ref: '#/components/responses/Unauthorized'
 components:
+  parameters:
+    ApiKeyParam:
+      name: api_key
+      in: query
+      required: true
+      schema:
+        type: string
+      description: Your Stats Perform API key.
   responses:
     Unauthorized:
       description: Missing or invalid API key
@@ -56,14 +64,6 @@ components:
             properties:
               message:
                 type: string
-  parameters:
-    ApiKeyParam:
-      name: api_key
-      in: query
-      required: true
-      schema:
-        type: string
-      description: Your Stats Perform API key.
   securitySchemes:
     statsApiKey:
       type: apiKey

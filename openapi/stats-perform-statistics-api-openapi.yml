@@ -101,6 +101,43 @@ components:
           type: object
           additionalProperties: true
           description: Sport-specific statistical fields.
+  parameters:
+    ApiKeyParam:
+      name: api_key
+      in: query
+      required: true
+      schema:
+        type: string
+      description: Your Stats Perform API key.
+    SeasonParam:
+      name: season
+      in: query
+      required: false
+      schema:
+        type: string
+      description: Season year (e.g., 2025). Defaults to current season.
+    SportParam:
+      name: sport
+      in: path
+      required: true
+      schema:
+        type: string
+        enum:
+        - football
+        - baseball
+        - basketball
+        - hockey
+        - soccer
+        - golf
+        - tennis
+      description: The sport category.
+    LeaguePathParam:
+      name: leaguePath
+      in: path
+      required: true
+      schema:
+        type: string
+      description: The league path identifier (e.g., nfl, mlb, nba, nhl, epl, pga, atp).
   responses:
     NotFound:
       description: Resource not found
@@ -120,43 +157,6 @@ components:
             properties:
               message:
                 type: string
-  parameters:
-    ApiKeyParam:
-      name: api_key
-      in: query
-      required: true
-      schema:
-        type: string
-      description: Your Stats Perform API key.
-    SportParam:
-      name: sport
-      in: path
-      required: true
-      schema:
-        type: string
-        enum:
-        - football
-        - baseball
-        - basketball
-        - hockey
-        - soccer
-        - golf
-        - tennis
-      description: The sport category.
-    SeasonParam:
-      name: season
-      in: query
-      required: false
-      schema:
-        type: string
-      description: Season year (e.g., 2025). Defaults to current season.
-    LeaguePathParam:
-      name: leaguePath
-      in: path
-      required: true
-      schema:
-        type: string
-      description: The league path identifier (e.g., nfl, mlb, nba, nhl, epl, pga, atp).
   securitySchemes:
     statsApiKey:
       type: apiKey

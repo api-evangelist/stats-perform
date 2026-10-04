@@ -51,6 +51,46 @@ paths:
         '401':
           $ref: '#/components/responses/Unauthorized'
 components:
+  parameters:
+    LeaguePathParam:
+      name: leaguePath
+      in: path
+      required: true
+      schema:
+        type: string
+      description: The league path identifier (e.g., nfl, mlb, nba, nhl, epl, pga, atp).
+    SportParam:
+      name: sport
+      in: path
+      required: true
+      schema:
+        type: string
+        enum:
+        - football
+        - baseball
+        - basketball
+        - hockey
+        - soccer
+        - golf
+        - tennis
+      description: The sport category.
+    ApiKeyParam:
+      name: api_key
+      in: query
+      required: true
+      schema:
+        type: string
+      description: Your Stats Perform API key.
+  responses:
+    Unauthorized:
+      description: Missing or invalid API key
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
   schemas:
     Article:
       type: object
@@ -82,46 +122,6 @@ components:
           type: string
           format: uri
           description: Associated image URL.
-  responses:
-    Unauthorized:
-      description: Missing or invalid API key
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              message:
-                type: string
-  parameters:
-    ApiKeyParam:
-      name: api_key
-      in: query
-      required: true
-      schema:
-        type: string
-      description: Your Stats Perform API key.
-    SportParam:
-      name: sport
-      in: path
-      required: true
-      schema:
-        type: string
-        enum:
-        - football
-        - baseball
-        - basketball
-        - hockey
-        - soccer
-        - golf
-        - tennis
-      description: The sport category.
-    LeaguePathParam:
-      name: leaguePath
-      in: path
-      required: true
-      schema:
-        type: string
-      description: The league path identifier (e.g., nfl, mlb, nba, nhl, epl, pga, atp).
   securitySchemes:
     statsApiKey:
       type: apiKey

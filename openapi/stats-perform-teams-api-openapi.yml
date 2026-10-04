@@ -71,52 +71,6 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
 components:
-  schemas:
-    Team:
-      type: object
-      description: A sports team.
-      properties:
-        teamId:
-          type: string
-          description: Unique team identifier.
-        name:
-          type: string
-          description: Full team name.
-        abbreviation:
-          type: string
-          description: Team abbreviation.
-        city:
-          type: string
-          description: Team city.
-        conference:
-          type: string
-          description: Conference the team belongs to.
-        division:
-          type: string
-          description: Division the team belongs to.
-        logoUrl:
-          type: string
-          format: uri
-          description: URL to the team logo.
-  responses:
-    NotFound:
-      description: Resource not found
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              message:
-                type: string
-    Unauthorized:
-      description: Missing or invalid API key
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              message:
-                type: string
   parameters:
     ApiKeyParam:
       name: api_key
@@ -147,6 +101,52 @@ components:
       schema:
         type: string
       description: The league path identifier (e.g., nfl, mlb, nba, nhl, epl, pga, atp).
+  responses:
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+    Unauthorized:
+      description: Missing or invalid API key
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+  schemas:
+    Team:
+      type: object
+      description: A sports team.
+      properties:
+        teamId:
+          type: string
+          description: Unique team identifier.
+        name:
+          type: string
+          description: Full team name.
+        abbreviation:
+          type: string
+          description: Team abbreviation.
+        city:
+          type: string
+          description: Team city.
+        conference:
+          type: string
+          description: Conference the team belongs to.
+        division:
+          type: string
+          description: Division the team belongs to.
+        logoUrl:
+          type: string
+          format: uri
+          description: URL to the team logo.
   securitySchemes:
     statsApiKey:
       type: apiKey

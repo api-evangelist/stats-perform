@@ -119,7 +119,78 @@ paths:
         '401':
           $ref: '#/components/responses/Unauthorized'
 components:
+  parameters:
+    ApiKeyParam:
+      name: api_key
+      in: query
+      required: true
+      schema:
+        type: string
+      description: Your Stats Perform API key.
+    EventIdParam:
+      name: eventId
+      in: path
+      required: true
+      schema:
+        type: string
+      description: The unique event identifier.
+    SportParam:
+      name: sport
+      in: path
+      required: true
+      schema:
+        type: string
+        enum:
+        - football
+        - baseball
+        - basketball
+        - hockey
+        - soccer
+        - golf
+        - tennis
+      description: The sport category.
+    LeaguePathParam:
+      name: leaguePath
+      in: path
+      required: true
+      schema:
+        type: string
+      description: The league path identifier (e.g., nfl, mlb, nba, nhl, epl, pga, atp).
   schemas:
+    BoxScore:
+      type: object
+      description: Full box score for a sports event.
+      properties:
+        eventId:
+          type: string
+          description: Unique event identifier.
+        homeTeam:
+          $ref: '#/components/schemas/TeamRef'
+        awayTeam:
+          $ref: '#/components/schemas/TeamRef'
+        homeStats:
+          type: object
+          additionalProperties: true
+          description: Home team aggregate statistics.
+        awayStats:
+          type: object
+          additionalProperties: true
+          description: Away team aggregate statistics.
+        playerStats:
+          type: array
+          items:
+            type: object
+            properties:
+              playerId:
+                type: string
+              playerName:
+                type: string
+              teamId:
+                type: string
+              stats:
+                type: object
+                additionalProperties: true
+          description: Individual player statistics for the event.
     EventScore:
       type: object
       description: Score data for a sports event.
@@ -169,40 +240,6 @@ components:
         abbreviation:
           type: string
           description: Team abbreviation.
-    BoxScore:
-      type: object
-      description: Full box score for a sports event.
-      properties:
-        eventId:
-          type: string
-          description: Unique event identifier.
-        homeTeam:
-          $ref: '#/components/schemas/TeamRef'
-        awayTeam:
-          $ref: '#/components/schemas/TeamRef'
-        homeStats:
-          type: object
-          additionalProperties: true
-          description: Home team aggregate statistics.
-        awayStats:
-          type: object
-          additionalProperties: true
-          description: Away team aggregate statistics.
-        playerStats:
-          type: array
-          items:
-            type: object
-            properties:
-              playerId:
-                type: string
-              playerName:
-                type: string
-              teamId:
-                type: string
-              stats:
-                type: object
-                additionalProperties: true
-          description: Individual player statistics for the event.
     PlayByPlay:
       type: object
       description: Play-by-play data for a sports event.
@@ -247,43 +284,6 @@ components:
             properties:
               message:
                 type: string
-  parameters:
-    ApiKeyParam:
-      name: api_key
-      in: query
-      required: true
-      schema:
-        type: string
-      description: Your Stats Perform API key.
-    EventIdParam:
-      name: eventId
-      in: path
-      required: true
-      schema:
-        type: string
-      description: The unique event identifier.
-    SportParam:
-      name: sport
-      in: path
-      required: true
-      schema:
-        type: string
-        enum:
-        - football
-        - baseball
-        - basketball
-        - hockey
-        - soccer
-        - golf
-        - tennis
-      description: The sport category.
-    LeaguePathParam:
-      name: leaguePath
-      in: path
-      required: true
-      schema:
-        type: string
-      description: The league path identifier (e.g., nfl, mlb, nba, nhl, epl, pga, atp).
   securitySchemes:
     statsApiKey:
       type: apiKey
