@@ -76,6 +76,62 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
 components:
+  parameters:
+    SportParam:
+      name: sport
+      in: path
+      required: true
+      schema:
+        type: string
+        enum:
+        - football
+        - baseball
+        - basketball
+        - hockey
+        - soccer
+        - golf
+        - tennis
+      description: The sport category.
+    SeasonParam:
+      name: season
+      in: query
+      required: false
+      schema:
+        type: string
+      description: Season year (e.g., 2025). Defaults to current season.
+    ApiKeyParam:
+      name: api_key
+      in: query
+      required: true
+      schema:
+        type: string
+      description: Your Stats Perform API key.
+    LeaguePathParam:
+      name: leaguePath
+      in: path
+      required: true
+      schema:
+        type: string
+      description: The league path identifier (e.g., nfl, mlb, nba, nhl, epl, pga, atp).
+  responses:
+    Unauthorized:
+      description: Missing or invalid API key
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
   schemas:
     TeamStats:
       type: object
@@ -101,62 +157,6 @@ components:
           type: object
           additionalProperties: true
           description: Sport-specific statistical fields.
-  parameters:
-    ApiKeyParam:
-      name: api_key
-      in: query
-      required: true
-      schema:
-        type: string
-      description: Your Stats Perform API key.
-    SeasonParam:
-      name: season
-      in: query
-      required: false
-      schema:
-        type: string
-      description: Season year (e.g., 2025). Defaults to current season.
-    SportParam:
-      name: sport
-      in: path
-      required: true
-      schema:
-        type: string
-        enum:
-        - football
-        - baseball
-        - basketball
-        - hockey
-        - soccer
-        - golf
-        - tennis
-      description: The sport category.
-    LeaguePathParam:
-      name: leaguePath
-      in: path
-      required: true
-      schema:
-        type: string
-      description: The league path identifier (e.g., nfl, mlb, nba, nhl, epl, pga, atp).
-  responses:
-    NotFound:
-      description: Resource not found
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              message:
-                type: string
-    Unauthorized:
-      description: Missing or invalid API key
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              message:
-                type: string
   securitySchemes:
     statsApiKey:
       type: apiKey

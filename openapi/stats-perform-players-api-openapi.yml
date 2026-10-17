@@ -47,13 +47,6 @@ paths:
           $ref: '#/components/responses/NotFound'
 components:
   parameters:
-    ApiKeyParam:
-      name: api_key
-      in: query
-      required: true
-      schema:
-        type: string
-      description: Your Stats Perform API key.
     SportParam:
       name: sport
       in: path
@@ -69,6 +62,13 @@ components:
         - golf
         - tennis
       description: The sport category.
+    ApiKeyParam:
+      name: api_key
+      in: query
+      required: true
+      schema:
+        type: string
+      description: Your Stats Perform API key.
     LeaguePathParam:
       name: leaguePath
       in: path
@@ -110,8 +110,8 @@ components:
           type: string
           description: Player birth country.
   responses:
-    NotFound:
-      description: Resource not found
+    Unauthorized:
+      description: Missing or invalid API key
       content:
         application/json:
           schema:
@@ -119,8 +119,8 @@ components:
             properties:
               message:
                 type: string
-    Unauthorized:
-      description: Missing or invalid API key
+    NotFound:
+      description: Resource not found
       content:
         application/json:
           schema:
